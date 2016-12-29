@@ -5,13 +5,14 @@ using System.Web.Mvc;
 
 namespace CommunityNetPortoAngular.Models
 {
-    
 
-    public class ArticleUser 
+
+    public class ArticleUser
     {
         public int ID { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public string Name { get; set; }
+        public string ImageURL { get; set; }
         public string Title { get; set; }
         public string Header { get; set; }
         public string Summary { get; set; }

@@ -30,4 +30,15 @@
     </div>
 
 </div>
-@Html.Partial("_TopArticles")
+<section id="topranking" class="services bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h2>Os artigos no top 10</h2>
+                <hr class="small">
+
+                    @Html.Action("_TopArticles", "Home")
+                </div>
+            </div>
+        </div>
+                </section>

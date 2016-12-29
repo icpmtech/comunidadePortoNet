@@ -244,6 +244,10 @@
     <Compile Include="Migrations\201612271448182_ArticleUpdateTypes_Date.Designer.cs">
       <DependentUpon>201612271448182_ArticleUpdateTypes_Date.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612291304196_AddArticleImage.cs" />
+    <Compile Include="Migrations\201612291304196_AddArticleImage.Designer.cs">
+      <DependentUpon>201612291304196_AddArticleImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticlesDetailsDTO.cs" />
@@ -779,6 +783,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612271448182_ArticleUpdateTypes_Date.resx">
       <DependentUpon>201612271448182_ArticleUpdateTypes_Date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612291304196_AddArticleImage.resx">
+      <DependentUpon>201612291304196_AddArticleImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

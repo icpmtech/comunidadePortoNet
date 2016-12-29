@@ -23,11 +23,13 @@ namespace CommunityNetPortoAngular.Controllers
 
             return View();
         }
-        public PartialViewResult _TopArticles()
+        public ActionResult _TopArticles()
         {
 
+                return View( db.ArticlesUsers.Include("ApplicationUser").OrderBy(s => s.Rating).ToList());
 
-            return PartialView();
+
+
         }
 
         public ActionResult Contact()
@@ -35,6 +37,14 @@ namespace CommunityNetPortoAngular.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

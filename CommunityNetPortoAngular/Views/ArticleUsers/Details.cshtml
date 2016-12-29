@@ -1,75 +1,37 @@
 ﻿@model CommunityNetPortoAngular.Models.ArticleUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes " + Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h2>@Model.Name</h2>
+<h4>@Model.Title</h4>
+    <div class="row">
 
-<h2>Details</h2>
+            <div class="col-sm-6 col-md-12">
+                <div class="thumbnail">
+                    <img alt="sem imagem" data-src="holder.js/100%x200" src="@Model.ImageURL" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+                    <div class="caption">
+                        <h3>@Model.Title</h3>
+                        <p>@Model.Summary</p>
+                        <p>@Html.Raw(Model.Content)</p>
+                        <p><a href="#" class="btn btn-light" role="button"><i class="fa fa-user fa-fw fa-3x"></i>@Model.ApplicationUser.UserName</a></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+@if (User.Identity.Name == Model.ApplicationUser.UserName)
+{
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Minha lista de artigos", "Index")
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Voltar", "Home", new { id = Model.ID })
 
-<div>
-    <h4>ArticleUser</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    </p>
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Header)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Header)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Footer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Footer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

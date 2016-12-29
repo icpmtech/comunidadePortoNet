@@ -32,7 +32,7 @@ namespace CommunityNetPortoAngular.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ArticleUser articleUser = await db.ArticlesUsers.FindAsync(id);
+            ArticleUser articleUser = await db.ArticlesUsers.Include("ApplicationUser").SingleOrDefaultAsync(i => i.ID == id); ;
             if (articleUser == null)
             {
                 return HttpNotFound();
@@ -47,11 +47,11 @@ namespace CommunityNetPortoAngular.Controllers
         }
 
         // POST: ArticleUsers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Name,Title,Header,Footer,Content")] ArticleUser articleUser)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Name,Title,ImageUrl,Header,Footer,Content")] ArticleUser articleUser)
         {
             if (ModelState.IsValid)
             {
@@ -82,11 +82,11 @@ namespace CommunityNetPortoAngular.Controllers
         }
 
         // POST: ArticleUsers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,Title,Header,Footer,Content")] ArticleUser articleUser)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,Title,ImageUrl,Header,Footer,Content")] ArticleUser articleUser)
         {
             if (ModelState.IsValid)
             {
