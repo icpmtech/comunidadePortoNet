@@ -3,12 +3,13 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var Articles=  CommunityNetPortoAngular.Helpers.HelperSplit.Split(Model.ToList());
 }
 
-<h2>Index</h2>
+<h2>Meus Artigos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo Artigo", "Create",null,new  { @class="btn btn-default"})
 </p>
 <table class="table">
     <tr>
@@ -28,7 +29,7 @@
             @Html.DisplayNameFor(model => model.Content)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
+            @Html.DisplayNameFor(model => model.CreationDate_)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Rating)
@@ -54,30 +55,34 @@
             @Html.DisplayFor(modelItem => item.Content)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
+            @Html.DisplayFor(modelItem => item.CreationDate_)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Apagar", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
 
 </table>
 
-@foreach (var item in Model)
-{
-    <div class="row">
-        <div class="col-md-4">
-            <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
-            <p>
-                @Html.DisplayFor(modelItem => item.Content)
-            </p>
-            <p><a class="btn btn-default" href="@Url.Action("Details","ArticleUsers", new { id=item.ID })">Saber mais &raquo;</a></p>
-        </div>
-    </div>
+    @foreach (var articleList in Articles)
+    {
+
+        <div class="row">
+@foreach (var item in articleList)
+{  <div class="col-md-4">
+                <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+                <p>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </p>
+                <p><a class="btn btn-default" href="@Url.Action("Details","ArticleUsers", new { id=item.ID })">Saber mais &raquo;</a></p>
+            </div>
 }
+          
+        </div>
+    }

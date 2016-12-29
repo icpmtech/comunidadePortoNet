@@ -7,6 +7,7 @@ using System.Web.Mvc;
 namespace CommunityNetPortoAngular.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()

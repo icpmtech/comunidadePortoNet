@@ -51,12 +51,13 @@ namespace CommunityNetPortoAngular.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Name,Title,Header,Footer,CreationDate")] ArticleUser articleUser)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Name,Title,Header,Footer,Content")] ArticleUser articleUser)
         {
             if (ModelState.IsValid)
             {
                var user= db.Users.First(s => s.UserName == User.Identity.Name);
                 articleUser.ApplicationUser = user;
+                articleUser.CreationDate_=DateTime.Now;
                 db.ArticlesUsers.Add(articleUser);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -85,7 +86,7 @@ namespace CommunityNetPortoAngular.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,Title,Header,Footer,CreationDate")] ArticleUser articleUser)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,Title,Header,Footer,Content")] ArticleUser articleUser)
         {
             if (ModelState.IsValid)
             {
