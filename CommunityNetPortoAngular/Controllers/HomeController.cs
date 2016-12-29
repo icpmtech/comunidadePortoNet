@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityNetPortoAngular.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ namespace CommunityNetPortoAngular.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
             return View();
@@ -20,6 +22,12 @@ namespace CommunityNetPortoAngular.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
+        }
+        public PartialViewResult _TopArticles()
+        {
+
+
+            return PartialView();
         }
 
         public ActionResult Contact()

@@ -43,19 +43,19 @@
                 <a href="#top" onclick=$("#menu-close").click();>Porto .Net</a>
             </li>
             <li>
-                <a href="#top" onclick=$("#menu-close").click();>Home</a>
+                <a href="@Url.Action("Index","Home")#top" onclick=$("#menu-close").click();>Home</a>
             </li>
             <li>
-                <a href="#about" onclick=$("#menu-close").click();>Conteúdos</a>
+                <a href="@Url.Action("Index","Home")#about" onclick=$("#menu-close").click();>Conteúdos</a>
             </li>
             <li>
-                <a href="#services" onclick=$("#menu-close").click();>Serviços</a>
+                <a href="@Url.Action("Index","Home")#services" onclick=$("#menu-close").click();>Serviços</a>
             </li>
             <li>
-                <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
+                <a href="@Url.Action("Index","Home")#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
             </li>
             <li>
-                <a href="#contact" onclick=$("#menu-close").click();>Contactos</a>
+                <a href="@Url.Action("Index","Home")#contact" onclick=$("#menu-close").click();>Contactos</a>
             </li>
             <li>
                 @Html.Partial("_LoginPartial")
@@ -153,13 +153,15 @@ O Microsoft Azure é um conjunto cada vez maior de serviços integrados na cloud
                                 <a href="https://github.com/comunidadeportonet" class="btn btn-light">Criar projecto  mais</a>
                             </div>
                         </div>
+
                     </div>
                     <!-- /.row (nested) -->
                 </div>
                 <!-- /.col-lg-10 -->
             </div>
-            <!-- /.row -->
-        </div>
+
+                <!-- /.row -->
+            </div>
         <!-- /.container -->
     </section>
     <!-- Callout -->
