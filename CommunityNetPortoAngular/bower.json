@@ -5,9 +5,12 @@
     "jquery": "2.2.3",
     "bootstrap": "3.3.6",
     "Microsoft.jQuery.Unobtrusive.Validation": "~3.2.3",
+    "MDBootstrap": "4.2.0",
+    "angular-seed": "*",
     "angular": "1.5.5"
   },
   "resolutions": {
-    "bootstrap": "3.3.6"
+    "bootstrap": "3.3.6",
+    "angular": "1.5.10"
   }
 }

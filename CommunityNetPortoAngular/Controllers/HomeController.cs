@@ -12,6 +12,7 @@ namespace CommunityNetPortoAngular.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -23,15 +24,24 @@ namespace CommunityNetPortoAngular.Controllers
 
             return View();
         }
+        [AllowAnonymous]
         public ActionResult _TopArticles()
         {
 
-                return View( db.ArticlesUsers.Include("ApplicationUser").OrderBy(s => s.Rating).ToList());
+                return View( db.ArticlesUsers.Include("ApplicationUser").OrderBy(s => s.Rating).Take(10).ToList());
 
 
 
         }
+        [AllowAnonymous]
+        public ActionResult _Articles()
+        {
 
+            return View(db.ArticlesUsers.Include("ApplicationUser").OrderBy(s => s.Rating).ToList());
+
+
+
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

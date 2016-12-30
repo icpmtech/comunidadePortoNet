@@ -8,37 +8,173 @@
     <p>@Html.ActionLink("Criar artigo »", "Index", "ArticleUsers", null, new { @class = "btn btn-primary btn-lg" })</p></p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Como começar com Asp.Net</h2>
-        <p>
-            O ASP.NET MVC fornece uma maneira poderosa de criar sites web.
-            Permite uma separação clara de conceitos MVC.
-            Com uma linguagem poderosa C# e Razor.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Saber mais &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Saber mais sobre NuGet</h2>
-        <p>NuGet é uma extensão gratuita do Visual Studio que facilita a inclusão, remoção e atualização de bibliotecas e ferramentas em projetos do Visual Studio.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Saber mais &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting Azure</h2>
-        <p>Tu podes facilmente encontrar uma empresa de hospedagem que oferece a combinação certa de recursos e preço para suas aplicaçõess.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Saber mais &raquo;</a></p>
-    </div>
 
-</div>
-<section id="topranking" class="services bg-primary">
+<section id="ranking_articles" class="services well-material-light-blue">
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-10 col-lg-offset-1">
-                <h2>Os artigos no top 10</h2>
-                <hr class="small">
-
+                <div class="section-header">
+                    <h2 class="section-title">Os artigos no top 10</h2>
+                    <hr class="small">
+                    </div>
                     @Html.Action("_TopArticles", "Home")
                 </div>
             </div>
         </div>
                 </section>
+
+<section id="ranking_users" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="100ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 100ms; animation-name: fadeInRight;">Ranking de utilizadores</h1>
+            <h2 class="section-subtitle wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 400ms; animation-name: fadeInRight;">O top criadores de artigos</h2>
+        </div>
+        <div class="row ">
+            <div class="col-lg-10 col-lg-offset-1 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="events" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="100ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 100ms; animation-name: fadeInRight;">Nossos Eventos</h1>
+            <h2 class="section-subtitle wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 400ms; animation-name: fadeInRight;">Juntos crescemos e aprendemos</h2>
+        </div>
+    </div>
+</section>
+@Html.Action("_Articles", "Home")
+<section id="why" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInRight;">
+                <img src="/img/features/img1.png" alt="">
+            </div>
+            <div class="col-md-6 col-sm-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInLeft;">
+                <div class="pull-left content">
+                    <h2>Porque devemos ajudar a fazer crescer e <br> a amar ComunidadePorto.Net</h2>
+                    <p>
+                        Para que cada vez mais tenhamos mais eventos internacionais <br>
+                        no Porto e na região Norte como acontece em Lisboa. <br>
+                        O WebSummit é um exemplo claro disto mesmo. Esta comunidade foi criada para juntar todos aqueles que amam o .Net.
+                        Todos aqueles que começam agora no mundo do trabalho, ou estudam programação e ou são especialistas em .Net e queiram fazer parte de algo maior <br>
+                        A comunidade foi criada para ser parte de vós.<br> Ajuda nos junta te a nós e trás as tuas ideias
+                        para com elas todos aprenderem e crescerem cada vez mais.
+                    </p>
+                    <ul class="list-item">
+                        <li><i class="mdi-action-done"></i>Não tenhas medo regista te</li>
+                        <li><i class="mdi-action-done"></i>Cria artigos e divulga teu saber</li>
+                        <li><i class="mdi-action-done"></i>Ajuda a divulgar a comunidade</li>
+                        <li><i class="mdi-action-done"></i>O Porto e o .Net crescem connosco</li>
+                        <li><i class="mdi-action-done"></i>Vamos crescer juntos</li>
+                    </ul>
+                    <a href="@Url.Action("Register","Account")#register" class="btn btn-lg btn-primary">Junta te a nós agora!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="cta">
+    <div class="container">
+        <div class="row text-center">
+            <h3 class="title-small wow bounce" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 300ms; animation-name: none;">Junta te a nós e Cresce connosco</h3>
+            <a href="https://localhost:44379/Account/Login#login" class="btn btn-lg btn-border">Entrar</a>
+        </div>
+    </div>
+</section>
+
+<section id="testimonial" class="section">
+    <div class="container">
+        <div class="section-header text-center wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="400ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 400ms; animation-name: none;">
+            <h1 class="section-title">Que dizem as pessoas sobre Nós</h1>
+            <h2 class="section-subtitle">Material UI Bootstrap APP and Business Template</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 400ms; animation-name: none;">
+                <div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#testimonial-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#testimonial-carousel" data-slide-to="1" class=""></li>
+                        <li data-target="#testimonial-carousel" data-slide-to="2" class=""></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item text-center active">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+                            <div class="meta">
+                                <p>Web excutive <span><a href="http://wingthemes.com/">WingThemes</a></span></p>
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+                            <div class="meta">
+                                <p>Web excutive <span><a href="http://pedro%20martins.com/">Pedro Martins</a></span></p>
+                            </div>
+                        </div>
+                        <div class="item text-center">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+                            <div class="meta">
+                                <p>Web excutive <span><a href="http://landingbow.com/">LandinBow</a></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="counter" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 300ms; animation-name: none;">
+                <div class="counter-item">
+                    <div class="icon">
+                        <i class="mdi-action-get-app"></i>
+                    </div>
+                    <h3 class="timer">39000</h3>
+                    <hr>
+                    <h5>
+                        Free Downloads
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 500ms; animation-name: none;">
+                <div class="counter-item">
+                    <div class="icon">
+                        <i class="mdi-action-face-unlock"></i>
+                    </div>
+                    <h3 class="timer">1046</h3>
+                    <hr>
+                    <h5>
+                        Premium Users
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="700ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 700ms; animation-name: none;">
+                <div class="counter-item">
+                    <div class="icon">
+                        <i class="mdi-action-grade"></i>
+                    </div>
+                    <h3 class="timer">6345</h3>
+                    <hr>
+                    <h5>
+                        Five Start Reviews
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="900ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 900ms; animation-name: none;">
+                <div class="counter-item">
+                    <div class="icon">
+                        <i class="mdi-action-trending-up"></i>
+                    </div>
+                    <h3 class="timer">18325</h3>
+                    <hr>
+                    <h5>
+                        Active Installs
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,343 +1,236 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Comunidade Porto .net</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @Styles.Render("~/Content/css")
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-
-    <script type="text/javascript" src="/Scripts/moment.min.js"></script>
-    <script type="text/javascript" src="/Scripts/bootstrap-datetimepicker.js"></script>
-    <script type='text/javascript'>
-        var appInsights = window.appInsights || function (config) {
-            function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } }
-            var t = { config: config }, u = document, e = window, o = 'script', s = u.createElement(o), i, f; for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;) r('track' + i.pop()); return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o), s }), t
-        }({
-            instrumentationKey: '3757b047-6f16-4b3b-9418-868be002ecf3'
-        });
-
-        window.appInsights = appInsights;
-        appInsights.trackPageView();
-
-    </script>
+    <meta charset="utf-8">
+    <meta name="description" content="Comunidade .net Porto Asp.net  Bootstrap Landing ">
+    <meta name="keywords" content="Bootstrap, Comunidade, .net Porto, Asp.net,  Bootstrap">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Pedro Martins">
+    <title>ComunidadePortoNet - A divulgar o .Net no Porto  toda a região norte </title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="/fonts/font-awesome.min.css" type="text/css" media="screen">
+    <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+    <link href="/css/material.min.css" rel="stylesheet">
+    <link href="/css/ripples.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top" onclick=$("#menu-close").click();>Porto .Net</a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","Home")#top" onclick=$("#menu-close").click();>Home</a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","Home")#about" onclick=$("#menu-close").click();>Conteúdos</a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","Home")#services" onclick=$("#menu-close").click();>Serviços</a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","Home")#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
-            </li>
-            <li>
-                <a href="@Url.Action("Index","Home")#contact" onclick=$("#menu-close").click();>Contactos</a>
-            </li>
+    <div class="navbar navbar-invers menu-wrap">
+        <div class="navbar-header text-center">
+            <a class="navbar-brand logo-right" href="@Url.Action("Index","Home")">ComunidadePorto<img height="36" src="/img/net.png" /> </a>
+        </div>
+        <ul class="nav navbar-nav main-navigation">
+            <li class="active"><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li><a href="@Url.Action("Index","Home")#ranking_articles">Ranking Artigos</a></li>
+            <li><a href="@Url.Action("Index","Home")#ranking_users">Ranking Utilizadores</a></li>
+            <li><a href="@Url.Action("Index","Home")#events">Eventos</a></li>
+            <li><a href="@Url.Action("Index","Home")#main-features">Artigos</a></li>
+            <li><a href="@Url.Action("Index","Home")#why">Porquê</a></li>
+            <li><a href="@Url.Action("Index","Home")#testimonial">Testemunhos</a></li>
+            <li><a href="@Url.Action("Index","Home")#contact">Contatos</a></li>
+            @if (!Request.IsAuthenticated)
+            {
+                <li><a href="@Url.Action("Index", "Home")#cta">Entrar nova sessão</a></li>
+            }
             <li>
                 @Html.Partial("_LoginPartial")
             </li>
         </ul>
-    </nav>
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Comunidade Porto <img width="64"  src="~/img/net.png" /></h1>
-            <h3>Comunidade de profissionais de <img width="64" src="~/img/net.png" /> no Porto</h3>
-            <br>
-            @if (!Request.IsAuthenticated)
-            {
-                <a href="#about" class="btn btn-dark btn-lg">Efectua teu registo</a>
-            }
-        </div>
-    </header>
-    <!-- About -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Queremos ajudar a divulgar o  <img width="48" src="~/img/net.png" /> no Porto e zona Norte de Portugal!</h2>
-                    <p class="lead">Ajuda nos com tuas ideias e fazendo teu registo para contactos  <a target="_blank" href="#">Assina a Newsletter</a>.</p>
-                </div>
-            </div>
-            <div class="row">
-                @RenderBody()
-
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-    <!-- Services -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Nossos Serviços</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                                </span>
-                                <h4>
-                                    <strong>Azure Cloud Computing</strong>
-                                </h4>
-                                <p>A sua aplicação. A sua arquitetura. A sua plataforma. Seja bem-vindo.
-O Microsoft Azure é um conjunto cada vez maior de serviços integrados na cloud — análise, computação, bases de dados, dispositivos móveis, redes, armazenamento e Web — tendo em vista uma movimentação mais rápida, uma maior concretização de objetivos e uma poupança mais eficiente. Eis o que pode fazer com o Azure…</p>
-                                <a href="https://azure.microsoft.com/pt-pt/free/" class="btn btn-light">Aprender mais</a>
+        <button class="close-button" id="close-button">Close Menu</button>
+    </div>
+    <div class="content-wrap">
+        <header class="hero-area" id="home">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="navbar navbar-inverse sticky-navigation navbar-fixed-top" role="navigation" data-spy="affix" data-offset-top="200">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <a class="logo-left " href="@Url.Action("Index","Home")">ComunidadePorto<img height="36" src="/img/net.png" /></a>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                                </span>
-                                <h4>
-                                    <strong>Partilha de conhecimento</strong>
-                                </h4>
-                                <p>Ajuda nos a crescer cria teus artigos.</p>
-                                <a href="#" class="btn btn-light">Saber mais</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                                </span>
-                                <h4>
-                                    <strong>Ajuda nos teus projectos</strong>
-                                </h4>
-                                <p>Criar a comunidade de partilha de todos para todos.</p>
-                                <a href="#" class="btn btn-light">Partilha mais</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                                </span>
-                                <h4>
-                                    <strong>Git Hub</strong>
-                                </h4>
-                                <p>O código de todos no repositório de todos.</p>
-                                <a href="https://github.com/comunidadeportonet" class="btn btn-light">Criar projecto  mais</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-
-                <!-- /.row -->
-            </div>
-        <!-- /.container -->
-    </section>
-    <!-- Callout -->
-    <aside class="callout">
-        <div class="text-vertical-center">
-            <h1>Chamada a sponsors!!!</h1>
-        </div>
-    </aside>
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Nossos Eventos</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="/img/portfolio-1.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="/img/portfolio-2.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="/img/portfolio-3.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="/img/portfolio-4.jpg">
-                                </a>
+                            <div class="navbar-right">
+                                <button class="menu-icon" id="open-button">
+                                    <i class="mdi-navigation-menu"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark"> Mais Eventos</a>
                 </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-
-    <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d48059.762398094834!2d-8.656867027068886!3d41.16213019690902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scentro+porto!5e0!3m2!1spt-PT!2spt!4v1482756835629"></iframe>
-        <br />
-        <small>
-            <a href="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d48059.762398094834!2d-8.656867027068886!3d41.16213019690902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scentro+porto!5e0!3m2!1spt-PT!2spt!4v1482756835629"></a>
-        </small>
-    </section>
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4>
-                        <strong>Comunidade Porto .Net Porto</strong>
-                    </h4>
-                    <p>
-                    ...
-                    </p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (00351)919-520-386</li>
-                        <li>
-                            <i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:comunidadeportonet@gmail.com">comunidadeportonet@gmail.com</a>
-                        </li>
-                    </ul>
-                    <br>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="https://www.facebook.com/porto.net/"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/portopontonet"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
-                    </ul>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Comunidade Porto <img width="32" src="~/img/net.jpg" /></p>
+                <div class="contents text-right">
+                    <h1 class="wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms">ComunidadePorto<img height="48" src="/img/net.png"></img> - Comunidade de profissionais de <img height="48" src="/img/net.png" /> no Porto</h1>
+                    <p class="wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">Queremos ajudar a divulgar o <img height="36" src="/img/net.png" /> no Porto e zona Norte de Portugal</p>
+                    <a href="@Url.Action("Login","Account")#login" class="btn btn-lg btn-primary wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">Entrar</a>
+                    <a href="@Url.Action("Register","Account")#register" class="btn btn-lg btn-border wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">Regista te</a>
                 </div>
             </div>
+        </header>
+        @RenderBody()
+
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 300ms; animation-name: none;">
+                        <h2 class="section-title">Aqui estão nossos contactos e onde estamos</h2>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="info">
+                                    <div class="icon">
+                                        <i class="mdi-maps-map"></i>
+                                    </div>
+                                    <h4>Endereço</h4>
+                                    <p>Matosinhos, Porto, Portugal</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="info">
+                                    <div class="icon">
+                                        <i class="mdi-content-mail"></i>
+                                    </div>
+                                    <h4>Endereço de E-mail</h4>
+                                    <p>comunidadeportonet@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="info">
+                                    <div class="icon">
+                                        <i class="mdi-action-settings-phone"></i>
+                                    </div>
+                                    <h4>Telemóvel</h4>
+                                    <p>(+351)919 520 386</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="info">
+                                    <div class="icon">
+                                        <i class="mdi-action-thumb-up"></i>
+                                    </div>
+                                    <h4>Twitter</h4>
+                                    <p>@@portopontonet</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 300ms; animation-name: none;">
+                        <h2 class="section-title">Entra em contato conosco gostamos de ouvir tuas ideias</h2>
+                        <div class="text-center">
+                            <h3><a href="@Url.Action("Register","Account")#register">Faz teu registo na comunidade para ter acesso á criação de teus artigos e começares a divulgar a comunidade.</a></h3>
+                            <a href="@Url.Action("Register","Account")#register" class="btn btn-larg btn-primary">Regista te agora!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="map-area">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6853.31334931688!2d149.5710983929677!3d-33.43399308961885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x63680231a1016da2!2sWestern+Region+Academy+of+Sport!5e0!3m2!1sen!2sbd!4v1436826340086" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
         </div>
-        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-    </footer>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("Scripts", required: false)
-    <!-- Custom Theme JavaScript -->
+        <section id="footer">
+            <div class="container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <h3>Links úteis</h3>
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/">GitHub</a>
+                                </li>
+                                <li>
+                                    <a href="http://pedromiguelmartins.azurewebsites.net/">Pedro Martins</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.portodata.net/">portodata.net</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.asp.net/">Asp.net</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.microsoft.com/net">.net</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <h3>Comunidades do Porto</h3>
+                            <ul>
+
+                                <li>
+                                    <a href="http://www.portodata.net/">portodata.net</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <h3>Acerca de nós</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">Sponsors</a>
+                                </li>
+                                <li>
+                                    <a href="#">Parceiros</a>
+                                </li>
+                                <li>
+                                    <a href="#">Equipa</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">Contactos</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <h3>Sabe mais sobre nós</h3>
+                            <a class="social" href="https://www.facebook.com/porto.net" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a class="social" href="https://twitter.com/portopontonet" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a class="social" href="#" target="_blank"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Go to Top Link -->
+            <a href="https://localhost:44379/#home" class="btn btn-primary back-to-top">
+                <i class=" mdi-hardware-keyboard-arrow-up"></i>
+            </a>
+        </section>
+        <section id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="copyright-text">
+                            © ComunidadePorto
+                            <img src="~/img/net.png" height="24" /> 2016 All right reserved. Designed and Developed by
+                            <a href="http://pedromiguelmartins.azurewebsites.net/">
+                                Pedro Martins
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/ripples.min.js"></script>
+    <script src="/js/material.min.js"></script>
+    <script src="/js/wow.js"></script>
+    <script src="/js/jquery.mmenu.min.all.js"></script>
+    <script src="/js/count-to.js"></script>
+    <script src="/js/jquery.inview.min.js"></script>
+    <script src="/js/classie.js"></script>
+    <script src="/js/jquery.nav.js"></script>
+    <script src="/js/smooth-on-scroll.js"></script>
+    <script src="/js/smooth-scroll.js"></script>
+    <script src="/js/main.js"></script>
+
     <script>
-        // Closes the sidebar menu
-        $("#menu-close").click(function (e) {
-            e.preventDefault();
-            $("#sidebar-wrapper").toggleClass("active");
+        $(document).ready(function() {
+            // This command is used to initialize some elements and make them work properly
+            $.material.init();
         });
-        // Opens the sidebar menu
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#sidebar-wrapper").toggleClass("active");
-        });
-        // Scrolls to the selected menu item on the page
-        $(function () {
-            $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function () {
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    if (target.length) {
-                        $('html,body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000);
-                        return false;
-                    }
-                }
-            });
-        });
-        //#to-top button appears after scrolling
-        var fixed = false;
-        $(document).scroll(function () {
-            if ($(this).scrollTop() > 250) {
-                if (!fixed) {
-                    fixed = true;
-                    // $('#to-top').css({position:'fixed', display:'block'});
-                    $('#to-top').show("slow", function () {
-                        $('#to-top').css({
-                            position: 'fixed',
-                            display: 'block'
-                        });
-                    });
-                }
-            } else {
-                if (fixed) {
-                    fixed = false;
-                    $('#to-top').hide("slow", function () {
-                        $('#to-top').css({
-                            display: 'none'
-                        });
-                    });
-                }
-            }
-        });
-        // Disable Google Maps scrolling
-        // See http://stackoverflow.com/a/25904582/1607849
-        // Disable scroll zooming and bind back the click event
-        var onMapMouseleaveHandler = function (event) {
-            var that = $(this);
-            that.on('click', onMapClickHandler);
-            that.off('mouseleave', onMapMouseleaveHandler);
-            that.find('iframe').css("pointer-events", "none");
-        }
-        var onMapClickHandler = function (event) {
-            var that = $(this);
-            // Disable the click handler until the user leaves the map area
-            that.off('click', onMapClickHandler);
-            // Enable scrolling zoom
-            that.find('iframe').css("pointer-events", "auto");
-            // Handle the mouse leave event
-            that.on('mouseleave', onMapMouseleaveHandler);
-        }
-        // Enable map zooming with mouse scroll when the user clicks the map
-        $('.map').on('click', onMapClickHandler);
     </script>
-
+    @RenderSection("scripts", required: false)
 </body>
 </html>

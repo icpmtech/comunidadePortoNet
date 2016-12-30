@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CommunityNetPortoAngular.Models.ArticleUser>
+@{
+    Layout = null;
+    var Articles = new List<List<CommunityNetPortoAngular.Models.ArticleUser>>();
+    if (Model != null)
+    {
+        Articles = CommunityNetPortoAngular.Helpers.HelperSplit.Split(Model.ToList());
+    }
+
+}
+
+
+
+
+<section id="main-features" class="section  main-feature-gray">
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="100ms">Nossos Artigos</h1>
+            <h2 class="section-subtitle wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">Como juntos somos melhores</h2>
+        </div>
+        @foreach (var articleList in Articles)
+        {
+            <div class="row">
+
+
+
+
+                @foreach (var item in articleList)
+                {
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="features">
+                            <div class="icon">
+                                <img alt="sem imagem" width="79" data-src="holder.js/100%x200" src="@item.ImageURL" data-holder-rendered="true">
+
+                            </div>
+                            <div class="features-text">
+                                <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Summary) </p>
+
+                                <a href="@Url.Action("Details","ArticleUsers", new { id=item.ID })" class="btn btn-lg btn-primary" role="button">Saber mais  &raquo;</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+        }
+
+        </div>
+    </section>
