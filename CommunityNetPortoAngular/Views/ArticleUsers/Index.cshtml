@@ -3,107 +3,112 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var Articles=  CommunityNetPortoAngular.Helpers.HelperSplit.Split(Model.ToList());
+    var Articles = CommunityNetPortoAngular.Helpers.HelperSplit.Split(Model.ToList());
+
 }
 
+<div id="articles_home" class="well">
 
 
+    @if (Model.Count() != 0)
 
-@if (Model.Count() != 0)
-
-{
-    <h2>Meus artigos</h2>
-    <p>
-        @Html.ActionLink("Novo Artigo", "Create", null, new { @class = "btn btn-default" })
-    </p>
-    <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Header)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Footer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate_)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Header)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Footer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate_)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+        <h2>Meus artigos</h2>
+        <p>
+            @Html.ActionLink("Novo Artigo", "Create", null,null,null,"article_new",null, new { @class = "btn btn-lg btn-primary col-md-offset-2 pull-right " })
+
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Header)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Footer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Summary)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationDate_)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Header)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Footer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Summary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate_)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Editar", "Edit", null, null, null, "article_edit", new { id = item.ID }, new { @class = "btn btn-xs btn-default " }) |
+                        @Html.ActionLink("Detalhes", "Details", null, null, null, "article_detail", new { id = item.ID }, new { @class = "btn btn-xs btn-default " }) |
+                        @Html.ActionLink("Apagar", "Delete", null, null, null, "article_delete", new { id = item.ID }, new { @class = "btn btn-xs btn-default " })
+                    </td>
+                </tr>
+            }
+
+        </table>}
+    else
+    {
+        <div class="jumbotron">
+            <h1>Olá, @User.Identity.Name ajuda-nos</h1>
+            <p class="lead">Cria um artigo, vê os outros a o valorizar, cresce a partilhar e colabora connosco.</p>
+            <p>
+                @Html.ActionLink("Novo Artigo »", "Create", null, null, null, "article_new", null, new { @class = "btn btn-primary btn-lg" })
+            </p>
+        </div>
+
     }
 
-</table>}
-else
-{
-    <div class="jumbotron">
-        <h1>Olá, @User.Identity.Name ajuda-nos</h1>
-        <p class="lead">Cria um artigo, vê os outros a o valorizar, cresce a partilhar e colabora connosco.</p>
-         <p>
-        @Html.ActionLink("Novo Artigo »", "Create", null, new {  @class = "btn btn-primary btn-lg" })
-    </p>
-    </div>
+    @foreach (var articleList in Articles)
+    {
 
-}
-
-@foreach (var articleList in Articles)
-{
-
-    <div class="row">
-        @foreach (var item in articleList)
-        {
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img alt="sem imagem" data-src="holder.js/100%x200" src="@item.ImageURL" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
-                    <div class="caption">
-                        <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
-                        <p>@Html.DisplayFor(modelItem => item.Summary)</p>
-                        <p><a href="@Url.Action("Details","ArticleUsers", new { id=item.ID })" class="btn btn-primary" role="button">Saber mais  &raquo;</a> <a href="#" class="btn btn-light" role="button"><i class="fa fa-user fa-fw fa-3x"></i> @User.Identity.Name</a></p>
+        <div class="row">
+            @foreach (var item in articleList)
+            {
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img alt="sem imagem" data-src="holder.js/100%x200" src="@item.ImageURL" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+                        <div class="caption">
+                            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                            <p>@Html.DisplayFor(modelItem => item.Summary)</p>
+                            <p><a href="@Url.Action("Details","ArticleUsers", new { id=item.ID })" class="btn btn-primary" role="button">Saber mais  &raquo;</a> <a href="#" class="btn btn-light" role="button"><i class="fa fa-user fa-fw fa-3x"></i> @User.Identity.Name</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
 
-    </div>
-}
+        </div>
+    }
+
+</div>
