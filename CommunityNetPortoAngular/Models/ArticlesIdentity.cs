@@ -23,8 +23,10 @@ namespace CommunityNetPortoAngular.Models
         public string[] Images { get; set; }
         public TimeSpan CreationDate { get; set; }
         public DateTime? CreationDate_ { get; set; }
+        public double Rating_ { get; set; }
         public int Rating { get; set; }
-
+        public double Total { get;  set; }
+        public int Vote { get;  set; }
     }
     public class ArticleRating
     {

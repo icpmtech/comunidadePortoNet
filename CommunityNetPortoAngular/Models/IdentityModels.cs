@@ -23,17 +23,18 @@ namespace CommunityNetPortoAngular.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            
+
         }
         public DbSet<ArticleUser> ArticlesUsers { get; set; }
-       
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.ArticlesDetailsDTO> ArticlesDetailsDTOes { get; set; }
+        public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.ArticleRating> ArticleRatings { get; set; }
 
-      
+
     }
 }

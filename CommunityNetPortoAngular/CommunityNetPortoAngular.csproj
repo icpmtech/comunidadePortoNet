@@ -222,6 +222,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleRatingsController.cs" />
     <Compile Include="Controllers\ArticlesDetailsDTOesController.cs" />
     <Compile Include="Controllers\ArticleUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -292,6 +293,8 @@
     <Content Include="css\roboto.css" />
     <Content Include="css\roboto.min.css" />
     <Content Include="css\settings.css" />
+    <Content Include="css\star-rating.css" />
+    <Content Include="css\star-rating.min.css" />
     <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome.min.css" />
@@ -349,6 +352,7 @@
     <Content Include="img\lightbox\default-skin.png" />
     <Content Include="img\lightbox\default-skin.svg" />
     <Content Include="img\lightbox\preloader.gif" />
+    <Content Include="img\loading.gif" />
     <Content Include="img\net.jpg" />
     <Content Include="img\net.png" />
     <Content Include="img\overlays\01.png" />
@@ -402,6 +406,8 @@
     <Content Include="js\ripples.min.js" />
     <Content Include="js\smooth-on-scroll.js" />
     <Content Include="js\smooth-scroll.js" />
+    <Content Include="js\star-rating.js" />
+    <Content Include="js\star-rating.min.js" />
     <Content Include="js\tether.js" />
     <Content Include="js\tether.min.js" />
     <Content Include="js\wow.js" />
@@ -1632,6 +1638,18 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="themes\krajee-fa\theme.css" />
+    <Content Include="themes\krajee-fa\theme.js" />
+    <Content Include="themes\krajee-fa\theme.min.css" />
+    <Content Include="themes\krajee-fa\theme.min.js" />
+    <Content Include="themes\krajee-svg\theme.css" />
+    <Content Include="themes\krajee-svg\theme.js" />
+    <Content Include="themes\krajee-svg\theme.min.css" />
+    <Content Include="themes\krajee-svg\theme.min.js" />
+    <Content Include="themes\krajee-uni\theme.css" />
+    <Content Include="themes\krajee-uni\theme.js" />
+    <Content Include="themes\krajee-uni\theme.min.css" />
+    <Content Include="themes\krajee-uni\theme.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1644,6 +1662,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\_Articles.cshtml" />
+    <Content Include="Views\ArticleRatings\Create.cshtml" />
+    <Content Include="Views\ArticleRatings\Delete.cshtml" />
+    <Content Include="Views\ArticleRatings\Details.cshtml" />
+    <Content Include="Views\ArticleRatings\Edit.cshtml" />
+    <Content Include="Views\ArticleRatings\Index.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml_" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
