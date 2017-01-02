@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Comunidade .net Porto Asp.net  Bootstrap Landing ">
@@ -10,8 +10,15 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="/fonts/font-awesome.min.css" type="text/css" media="screen">
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
     <link href="/css/material.min.css" rel="stylesheet">
+    <link href="~/css/material-fullpalette.css" rel="stylesheet" />
     <link href="/css/ripples.min.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
@@ -117,12 +124,53 @@
                             </div>
                         </div>
                     </div>
+                    @if (!User.Identity.IsAuthenticated)
+	                {
                     <div class="col-md-6 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 300ms; animation-name: none;">
                         <h2 class="section-title">Entra em contato conosco gostamos de ouvir tuas ideias</h2>
                         <div class="text-center">
                             <h3><a href="@Url.Action("Register","Account")#register">Faz teu registo na comunidade para ter acesso á criação de teus artigos e começares a divulgar a comunidade.</a></h3>
-                            <a href="@Url.Action("Register","Account")#register" class="btn btn-larg btn-primary">Regista te agora!</a>
+                            <a href="@Url.Action("Register","Account")#register" class="btn btn-primary pull-right">Regista te agora!</a>
                         </div>
+                    </div>
+                    }
+                  <div class="col-md-6 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInRight;">
+                        <h2 class="section-title">Envia tuas sugestões</h2>
+                      <!-- Start Contact Form -->
+                      <form role="form" id="contactForm" class="contact-form" data-toggle="validator" novalidate="novalidate">
+                          <div class="form-group">
+                              <div class="controls">
+                                  <i class="mdi-action-account-box"></i>
+                                  <input type="text" id="name" name="Name" class="form-control" placeholder="Nome" required="" data-error="Por favor introduz teu nome">
+                                  <div id="name_error" class="help-block with-errors"></div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="controls">
+                                  <i class="mdi-content-mail"></i>
+                                  <input type="email" class="email form-control" id="email" name="Email" placeholder="Endereço de e-mail" required data-error="Introduz teu endereço de e-mail">
+                                  <div id="email_error" class="help-block with-errors"></div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="controls">
+                                  <input type="text" id="msg_subject" class="form-control" name="TypeMessage" placeholder="Tópico da mensagem" required data-error="Tópico de mensagem">
+                                  <div id="msg_subject_error" class="help-block with-errors"></div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="controls">
+                                  <textarea id="message" rows="7" placeholder="Descrição da mensagem" name="Message" class="form-control" required data-error="Introduz tua mensagem de sugestão"></textarea>
+                                  <div id="message_error" class="help-block with-errors"></div>
+                              </div>
+                          </div>
+
+                          <button type="submit" id="submit" class="btn btn-primary pull-right" style="pointer-events: all; cursor: pointer;"> Enviar sugestão</button>
+                          <div id="msgSubmit" class="h3 text-center text-danger hidden">Por favor preenche o formulário correctamente?</div>
+                          <div class="clearfix"></div>
+
+                      </form>
+                      <!-- End Contact Form -->
                     </div>
                 </div>
             </div>
@@ -223,17 +271,23 @@
     <script src="/js/jquery.mmenu.min.all.js"></script>
     <script src="/js/count-to.js"></script>
     <script src="/js/jquery.inview.min.js"></script>
+    <script src="/js/form-validator.min.js"></script>
+    <script src="/js/contact-form-script.js"></script>
     <script src="/js/classie.js"></script>
     <script src="/js/jquery.nav.js"></script>
     <script src="/js/smooth-on-scroll.js"></script>
     <script src="/js/smooth-scroll.js"></script>
     <script src="/js/main.js"></script>
-
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function() {
             // This command is used to initialize some elements and make them work properly
             $.material.init();
-        });
+
+
+            });
+
+
     </script>
 
     @RenderSection("scripts", required: false)
