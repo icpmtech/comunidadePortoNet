@@ -141,7 +141,13 @@ namespace CommunityNetPortoAngular.Controllers
         {
             return View();
         }
-
+        //
+        // GET: /Account/Resume
+        [AllowAnonymous]
+        public ActionResult Resume()
+        {
+            return View();
+        }
         //
         // POST: /Account/Register
         [HttpPost]
