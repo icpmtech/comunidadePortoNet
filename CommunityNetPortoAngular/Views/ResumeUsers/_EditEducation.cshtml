@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+
+    <div class="well">
+        <h2 class="text-center">Editar formação</h2>
+        <div class="example">
+            <table id="editing-example-education" class="table" data-paging="true" data-filtering="false" data-sorting="true">
+                <thead>
+                    <tr>
+                        <th data-name="id" data-breakpoints="xs" data-type="number">ID</th>
+                        <th data-name="jobTitle">Titulo da formação</th>
+                        <th data-name="description">Descrição da formação</th>
+                        <th data-name="startedOn" data-breakpoints="xs sm" data-type="date" data-format-string="MMMM Do YYYY">Data de inicio</th>
+                        <th data-name="dob" data-breakpoints="xs sm md" data-type="date" data-format-string="MMMM Do YYYY">Data de Fim</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <div class="modal fade" id="editor-modal-education" tabindex="-1" role="dialog" aria-labelledby="editor-title-education">
+
+                <div class="modal-dialog" role="document">
+                    <form class="modal-content form-horizontal" id="editor-education">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="editor-title-education">Nova formação</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="number" id="id" name="id" class="hidden" />
+                            <div class="form-group required">
+                                <label for="firstName" class="col-sm-3 control-label">Titulo da formação</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Titulo do projeto" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="description" class="col-sm-3 control-label">Descrição da formação</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="description" name="description" placeholder="Descrição do projeto" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="startedOn" class="col-sm-3 control-label">Data de inicio</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="startedOn" name="startedOn" placeholder="Data de inicio" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob" class="col-sm-3 control-label">Data de fim</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar alterações</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+

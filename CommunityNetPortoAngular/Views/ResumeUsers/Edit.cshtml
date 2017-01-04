@@ -5,100 +5,445 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Editar meu perfil</h2>
+
+<div class="well">
+    <h2 class="text-center">Editar perfil básico</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CareerProfile, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CareerProfile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CareerProfile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Linkedin, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Linkedin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Linkedin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.GitHub, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GitHub, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GitHub, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Twitter, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Twitter, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Twitter, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.PortfolioSite, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PortfolioSite, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PortfolioSite, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TagLine, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TagLine, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TagLine, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Voltar meu Perfil", "My Profile", null, new { @class = "btn btn-primary pull-left" })
+                    <input type="submit" value="Guardar alterações meu perfil" class="btn btn-primary pull-right" />
+                </div>
+            </div>
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CareerProfile, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CareerProfile, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CareerProfile, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Linkedin, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Linkedin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Linkedin, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.GitHub, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GitHub, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GitHub, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Twitter, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Twitter, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Twitter, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.PortfolioSite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PortfolioSite, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PortfolioSite, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.TagLine, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TagLine, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TagLine, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar alterações meu perfil" class="btn btn-primary" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.ActionLink("Voltar meu Perfil", "My Profile", null, new { @class = "btn btn-primary" })
-            </div>
+    }
+    </div>
+@Html.Partial("_EditExperiencies")
+@Html.Partial("_EditProjects")
+@Html.Partial("_EditEducation")
+@Html.Partial("_EditLanguages")
+@Html.Partial("_EditSkills")
+<div id="back" class="row well">
+    <div class="col-md-offset-2 col-md-10">
+        <div class="pull-right">
+            @Html.ActionLink("Voltar meu Perfil", "My Profile", null, new { @class = "btn btn-primary " })
         </div>
     </div>
-}
+</div>
+
+    @section Scripts {
+<link href="~/css/footable.bootstrap.min.css" rel="stylesheet" />
+<style>
+    /* provides a red astrix to denote required fields - this should be included in common stylesheet */
+    .form-group.required .control-label:after {
+        content: "*";
+        color: red;
+        margin-left: 4px;
+    }
+</style>
+<!-- Add in any FooTable dependencies we may need -->
+
+<script src="~/js/moment.min.js"></script>
+<script src="~/js/moment-with-locales.js"></script>
+<script src="~/js/footable.min.js"></script>
+<script>
+	jQuery(function($){
+		var $modal = $('#editor-modal'),
+			$editor = $('#editor'),
+			$editorTitle = $('#editor-title'),
+			ft = FooTable.init('#editing-example', {
+			    "empty": "Sem experiências",
+				editing: {
+				    enabled: true,
+				    "showText": '<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Editar experiências',
+				    "hideText": "Cancelar",
+				    "addText": "Nova experiência",
+					addRow: function(){
+						$modal.removeData('row');
+						$editor[0].reset();
+						$editorTitle.text('Nova experiência');
+						$modal.modal('show');
+					},
+					editRow: function(row){
+						var values = row.val();
+						$editor.find('#id').val(values.id);
+						$editor.find('#firstName').val(values.firstName);
+						$editor.find('#description').val(values.description);
+						$editor.find('#jobTitle').val(values.jobTitle);
+						$editor.find('#startedOn').val(values.startedOn.format('YYYY-MM-DD'));
+						$editor.find('#dob').val(values.dob.format('YYYY-MM-DD'));
+
+						$modal.data('row', row);
+						$editorTitle.text('Editar experiência #' + values.id);
+						$modal.modal('show');
+					},
+					deleteRow: function(row){
+					    if (confirm('Tens certeza que queres apagar a experiência?')) {
+							row.delete();
+						}
+					}
+				}
+			}),
+			uid = 10;
+
+		$editor.on('submit', function(e){
+			if (this.checkValidity && !this.checkValidity()) return;
+			e.preventDefault();
+			var row = $modal.data('row'),
+				values = {
+					id: $editor.find('#id').val(),
+					firstName: $editor.find('#firstName').val(),
+					description: $editor.find('#description').val(),
+					jobTitle: $editor.find('#jobTitle').val(),
+					startedOn: moment($editor.find('#startedOn').val(), 'YYYY-MM-DD'),
+					dob: moment($editor.find('#dob').val(), 'YYYY-MM-DD')
+				};
+
+			if (row instanceof FooTable.Row){
+				row.val(values);
+			} else {
+				values.id = uid++;
+				ft.rows.add(values);
+			}
+			$modal.modal('hide');
+		});
+	});
+
+	jQuery(function($){
+		var $modal = $('#editor-modal-projects'),
+			$editor = $('#editor-projects'),
+			$editorTitle = $('#editor-title-projects'),
+			ft = FooTable.init('#editing-example-projects', {
+
+			    "rows": $.get('/api/Projects'),
+			    "empty": "Sem projetos",
+				editing: {
+				    enabled: true,
+				    "showText": '<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Editar projeto',
+				    "hideText": "Cancelar",
+				    "addText": "Novo projeto",
+
+					addRow: function(){
+						$modal.removeData('row');
+						$editor[0].reset();
+						$editorTitle.text('Novo projeto');
+						$modal.modal('show');
+					},
+					editRow: function(row){
+						var values = row.val();
+						$editor.find('#id').val(values.id);
+						$editor.find('#description').val(values.description);
+						$modal.data('row', row);
+						$editorTitle.text('Editar projeto #' + values.id);
+						$modal.modal('show');
+					},
+					deleteRow: function(row){
+					    if (confirm('Tens certeza que queres apagar o projeto?')) {
+							row.delete();
+						}
+					}
+				}
+			}),
+			uid = 10;
+
+		$editor.on('submit', function(e){
+			if (this.checkValidity && !this.checkValidity()) return;
+			e.preventDefault();
+			var row = $modal.data('row'),
+				values = {
+					id: $editor.find('#id').val(),
+					description: $editor.find('#description').val()
+				};
+
+			if (row instanceof FooTable.Row){
+			    row.val(values);
+			    $.ajax({
+			        type: "PUT",
+			        url: '/api/Projects',
+			        data: {
+			            ID: values.id,
+			            Name: values.description
+			        },
+			        success: function (response) {
+			            alert(response);
+			        }
+
+			    });
+			} else {
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+				$.ajax({
+				    type: "POST",
+				    url: ' /api/Projects',
+				    data: {
+				        ID: values.id,
+				        Name:values.description
+				    },
+				    success: function(response) {
+				        values.id = uid++;
+				        ft.rows.add(values);
+				        $modal.modal('hide');
+				    }
+
+				});
+			}
+
+		});
+	});
+	jQuery(function ($) {
+	    var $modal = $('#editor-modal-languages'),
+			$editor = $('#editor-languages'),
+			$editorTitle = $('#editor-title-languages'),
+			ft = FooTable.init('#editing-example-languages', {
+			    "empty": "Sem linguagens",
+			    editing: {
+			        enabled: true,
+			        "showText": '<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Editar linguagem',
+			        "hideText": "Cancelar",
+			        "addText": "Nova linguagem",
+			        addRow: function () {
+			            $modal.removeData('row');
+			            $editor[0].reset();
+			            $editorTitle.text('Nova linguagem');
+			            $modal.modal('show');
+			        },
+			        editRow: function (row) {
+			            var values = row.val();
+			            $editor.find('#id').val(values.id);
+			            $editor.find('#firstName').val(values.firstName);
+			            $editor.find('#description').val(values.description);
+			            $editor.find('#jobTitle').val(values.jobTitle);
+			            $editor.find('#startedOn').val(values.startedOn.format('YYYY-MM-DD'));
+			            $editor.find('#dob').val(values.dob.format('YYYY-MM-DD'));
+
+			            $modal.data('row', row);
+			            $editorTitle.text('Editar linguagem #' + values.id);
+			            $modal.modal('show');
+			        },
+			        deleteRow: function (row) {
+			            if (confirm('Tens certeza que queres apagar a linguagem?')) {
+			                row.delete();
+			            }
+			        }
+			    }
+			}),
+			uid = 10;
+
+	    $editor.on('submit', function (e) {
+	        if (this.checkValidity && !this.checkValidity()) return;
+	        e.preventDefault();
+	        var row = $modal.data('row'),
+				values = {
+				    id: $editor.find('#id').val(),
+				    firstName: $editor.find('#firstName').val(),
+				    description: $editor.find('#description').val(),
+				    jobTitle: $editor.find('#jobTitle').val(),
+				    startedOn: moment($editor.find('#startedOn').val(), 'YYYY-MM-DD'),
+				    dob: moment($editor.find('#dob').val(), 'YYYY-MM-DD')
+				};
+
+	        if (row instanceof FooTable.Row) {
+	            row.val(values);
+	        } else {
+	            values.id = uid++;
+	            ft.rows.add(values);
+	        }
+	        $modal.modal('hide');
+	    });
+	});
+	jQuery(function ($) {
+	    var $modal = $('#editor-modal-education'),
+			$editor = $('#editor-education'),
+			$editorTitle = $('#editor-title-education'),
+			ft = FooTable.init('#editing-example-education', {
+			    "empty": "Sem formações",
+			    editing: {
+			        enabled: true,
+			        "showText": '<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Editar formação',
+			        "hideText": "Cancelar",
+			        "addText": "Nova formação",
+			        addRow: function () {
+			            $modal.removeData('row');
+			            $editor[0].reset();
+			            $editorTitle.text('Nova formação');
+			            $modal.modal('show');
+			        },
+			        editRow: function (row) {
+			            var values = row.val();
+			            $editor.find('#id').val(values.id);
+			            $editor.find('#firstName').val(values.firstName);
+			            $editor.find('#description').val(values.description);
+			            $editor.find('#jobTitle').val(values.jobTitle);
+			            $editor.find('#startedOn').val(values.startedOn.format('YYYY-MM-DD'));
+			            $editor.find('#dob').val(values.dob.format('YYYY-MM-DD'));
+
+			            $modal.data('row', row);
+			            $editorTitle.text('Editar formação #' + values.id);
+			            $modal.modal('show');
+			        },
+			        deleteRow: function (row) {
+			            if (confirm('Tens certeza que queres apagar a formação?')) {
+			                row.delete();
+			            }
+			        }
+			    }
+			}),
+			uid = 10;
+
+	    $editor.on('submit', function (e) {
+	        if (this.checkValidity && !this.checkValidity()) return;
+	        e.preventDefault();
+	        var row = $modal.data('row'),
+				values = {
+				    id: $editor.find('#id').val(),
+				    firstName: $editor.find('#firstName').val(),
+				    description: $editor.find('#description').val(),
+				    jobTitle: $editor.find('#jobTitle').val(),
+				    startedOn: moment($editor.find('#startedOn').val(), 'YYYY-MM-DD'),
+				    dob: moment($editor.find('#dob').val(), 'YYYY-MM-DD')
+				};
+
+	        if (row instanceof FooTable.Row) {
+	            row.val(values);
+	        } else {
+	            values.id = uid++;
+	            ft.rows.add(values);
+	        }
+	        $modal.modal('hide');
+	    });
+	});
+	jQuery(function ($) {
+	    var $modal = $('#editor-modal-skills'),
+			$editor = $('#editor-skills'),
+			$editorTitle = $('#editor-title-skills'),
+			ft = FooTable.init('#editing-example-skills', {
+			    "empty": "Sem skills",
+			    editing: {
+			        enabled: true,
+			        "showText": '<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Editar Skill',
+			        "hideText": "Cancelar",
+			        "addText": "Nova Skill",
+			        addRow: function () {
+			            $modal.removeData('row');
+			            $editor[0].reset();
+			            $editorTitle.text('Nova Skill');
+			            $modal.modal('show');
+			        },
+			        editRow: function (row) {
+			            var values = row.val();
+			            $editor.find('#id').val(values.id);
+			            $editor.find('#title-skill').val(values.title);
+			            $editor.find('#value-skill').val(values.value);
+			            $modal.data('row', row);
+			            $editorTitle.text('Editar Skill #' + values.id);
+			            $modal.modal('show');
+			        },
+			        deleteRow: function (row) {
+			            if (confirm('Tens certeza que queres apagar a Skill?')) {
+			                row.delete();
+			            }
+			        }
+			    }
+			}),
+			uid = 10;
+
+	    $editor.on('submit', function (e) {
+	        if (this.checkValidity && !this.checkValidity()) return;
+	        e.preventDefault();
+	        var row = $modal.data('row'),
+				values = {
+				    id: $editor.find('#id').val(),
+				    title: $editor.find('#title-skill').val(),
+				    value: $editor.find('#value-skill').val(),
+
+				};
+
+	        if (row instanceof FooTable.Row) {
+	            row.val(values);
+	        } else {
+	            values.id = uid++;
+	            ft.rows.add(values);
+	        }
+	        $modal.modal('hide');
+	    });
+	});
+</script>
+        @Scripts.Render("~/bundles/jqueryval")
+    }

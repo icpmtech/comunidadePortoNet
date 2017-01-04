@@ -103,6 +103,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -221,12 +222,42 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleRatingsController.cs" />
     <Compile Include="Controllers\ArticlesDetailsDTOesController.cs" />
     <Compile Include="Controllers\ArticleUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\ProjectViewModel.cs" />
     <Compile Include="Controllers\ResumeUsersController.cs" />
     <Compile Include="Controllers\SuggestionViewModelsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +302,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="assets\css\styles-2.css" />
     <Content Include="assets\css\styles-3.css" />
     <Content Include="assets\css\styles-4.css" />
@@ -313,6 +345,8 @@
     <Content Include="css\animate.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\footable.bootstrap.css" />
+    <Content Include="css\footable.bootstrap.min.css" />
     <Content Include="css\jquery.mmenu.all.css" />
     <Content Include="css\jquery.mmenu.css" />
     <Content Include="css\main.css" />
@@ -423,6 +457,8 @@
     <Content Include="js\classie.js" />
     <Content Include="js\contact-form-script.js" />
     <Content Include="js\count-to.js" />
+    <Content Include="js\footable.js" />
+    <Content Include="js\footable.min.js" />
     <Content Include="js\form-validator.min.js" />
     <Content Include="js\jquery-2.1.4.min.js" />
     <Content Include="js\jquery-2.2.3.js" />
@@ -439,6 +475,8 @@
     <Content Include="js\material.min.js" />
     <Content Include="js\mdb.js" />
     <Content Include="js\mdb.min.js" />
+    <Content Include="js\moment-with-locales.js" />
+    <Content Include="js\moment.min.js" />
     <Content Include="js\ripples.js" />
     <Content Include="js\ripples.min.js" />
     <Content Include="js\smooth-on-scroll.js" />
@@ -735,6 +773,26 @@
     <Content Include="assets\plugins\font-awesome\scss\_rotated-flipped.scss" />
     <Content Include="assets\plugins\font-awesome\scss\_stacked.scss" />
     <Content Include="assets\plugins\font-awesome\scss\_variables.scss" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\CommunityNetPortoAngular20161226110519.pubxml" />
     <None Include="Properties\PublishProfiles\comunidadenetporto - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\comunidadeportonet - Web Deploy.pubxml" />
@@ -1502,6 +1560,7 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="Scripts\systemjs.config.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -1783,6 +1842,12 @@
     <Content Include="Views\ResumeUsers\Edit.cshtml" />
     <Content Include="Views\ResumeUsers\Index.cshtml" />
     <Content Include="Views\ResumeUsers\MyProfile.cshtml" />
+    <Content Include="Views\ResumeUsers\_EditProjects.cshtml" />
+    <Content Include="Views\ResumeUsers\_EditExperiencies.cshtml" />
+    <Content Include="Views\ResumeUsers\_EditEducation.cshtml" />
+    <Content Include="Views\ResumeUsers\_EditInterests.cshtml" />
+    <Content Include="Views\ResumeUsers\_EditLanguages.cshtml" />
+    <Content Include="Views\ResumeUsers\_EditSkills.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml_" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -1839,6 +1904,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="comunidadeportonet_v2\" />
+    <Folder Include="js\app\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
