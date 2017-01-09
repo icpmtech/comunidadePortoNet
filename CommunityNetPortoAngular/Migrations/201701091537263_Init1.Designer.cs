@@ -7,13 +7,13 @@ namespace CommunityNetPortoAngular.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ArticleRating : IMigrationMetadata
+    public sealed partial class Init1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ArticleRating));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612271203064_ArticleRating"; }
+            get { return "201701091537263_Init1"; }
         }
         
         string IMigrationMetadata.Source

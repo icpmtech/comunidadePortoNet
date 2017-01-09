@@ -31,7 +31,6 @@ namespace CommunityNetPortoAngular.Models
         {
             return new ApplicationDbContext();
         }
-
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.ArticlesDetailsDTO> ArticlesDetailsDTOes { get; set; }
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.ArticleRating> ArticleRatings { get; set; }
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.SuggestionViewModel> Suggestions { get; set; }
@@ -40,8 +39,10 @@ namespace CommunityNetPortoAngular.Models
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Skill> Skills { get; set; }
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Proficiency> Proficiencies { get; set; }
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Project> Projects { get; set; }
+        public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Language> Languages { get; set; }
 
+        public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Education> Educations { get; set; }
 
-
+        public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Interest> Interests { get; set; }
     }
 }

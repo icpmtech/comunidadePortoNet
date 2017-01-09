@@ -13,37 +13,38 @@ using CommunityNetPortoAngular.Models;
 
 namespace CommunityNetPortoAngular.Controllers
 {
-    public class ProjectsController : ApiController
+    public class EducationsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Projects
-        public IQueryable<Project> GetProjects()
+        // GET: api/Educations
+        public IQueryable<Education> GetEducations()
         {
+
             if (User.Identity.IsAuthenticated)
             {
-                IQueryable<Project> projects= db.Projects.Where(q => q.ResumeUser.ApplicationUser.UserName == User.Identity.Name);
-                return projects;
+                IQueryable<Education> educations = db.Educations.Where(q => q.ResumeUser.ApplicationUser.UserName == User.Identity.Name);
+                return educations;
             }
             return null;
         }
 
-        // GET: api/Projects/5
-        [ResponseType(typeof(Project))]
-        public async Task<IHttpActionResult> GetProject(int id)
+        // GET: api/Educations/5
+        [ResponseType(typeof(Education))]
+        public async Task<IHttpActionResult> GetEducation(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Education education = await db.Educations.FindAsync(id);
+            if (education == null)
             {
                 return NotFound();
             }
 
-            return Ok(project);
+            return Ok(education);
         }
 
-        // PUT: api/Projects/5
+        // PUT: api/Educations/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutProject( ProjectViewModel projectViewModel)
+        public async Task<IHttpActionResult> PutEducation(EducationViewModel educationViewModel)
         {
 
             if (!ModelState.IsValid)
@@ -51,11 +52,11 @@ namespace CommunityNetPortoAngular.Controllers
                 return BadRequest(ModelState);
             }
 
-            if ( projectViewModel.ID==null)
+            if (educationViewModel.ID == null)
             {
                 return BadRequest();
             }
-            Project project = new Project { ID = projectViewModel.ID ?? 0, Name = projectViewModel.Name, Title = projectViewModel.Title, Link = projectViewModel.Link };
+            Education project = new Education { ID = educationViewModel.ID ?? 0, Dob = educationViewModel.Dob, StartedOn = educationViewModel.StartedOn, Description = educationViewModel.Description, Title = educationViewModel.Title};
             if (User.Identity.IsAuthenticated)
             {
                 project.ResumeUser = db.Resumes.Where(s => s.ApplicationUser.UserName == User.Identity.Name).FirstOrDefault();
@@ -68,7 +69,7 @@ namespace CommunityNetPortoAngular.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(projectViewModel.ID??0))
+                if (!EducationExists(educationViewModel.ID ?? 0))
                 {
                     return NotFound();
                 }
@@ -81,41 +82,38 @@ namespace CommunityNetPortoAngular.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Projects
-        [ResponseType(typeof(Project))]
-        public async Task<IHttpActionResult> PostProject(ProjectViewModel projectViewModel)
+        // POST: api/Educations
+        [ResponseType(typeof(Education))]
+        public async Task<IHttpActionResult> PostEducation(EducationViewModel educationViewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            Project project = new Project { ID = projectViewModel.ID ?? 0, Name = projectViewModel.Name, Title = projectViewModel.Title, Link = projectViewModel.Link };
+
+            Education project = new Education { ID = educationViewModel.ID ?? 0, Dob = educationViewModel.Dob, StartedOn = educationViewModel.StartedOn, Description = educationViewModel.Description, Title = educationViewModel.Title };
 
             if (User.Identity.IsAuthenticated)
             {
                 project.ResumeUser = db.Resumes.Where(s => s.ApplicationUser.UserName == User.Identity.Name).FirstOrDefault();
             }
-            db.Projects.Add(project);
+            db.Educations.Add(project);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = project.ID }, project);
         }
 
-        // DELETE: api/Projects/5
-        [ResponseType(typeof(Project))]
-        public async Task<IHttpActionResult> DeleteProject(int id)
+        // DELETE: api/Educations/5
+        [ResponseType(typeof(Education))]
+        public async Task<IHttpActionResult> DeleteEducation(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Education education = await db.Educations.FindAsync(id);
+            if (education == null)
             {
                 return NotFound();
             }
 
-            db.Projects.Remove(project);
+            db.Educations.Remove(education);
             await db.SaveChangesAsync();
 
-            return Ok(project);
+            return Ok(education);
         }
 
         protected override void Dispose(bool disposing)
@@ -127,9 +125,9 @@ namespace CommunityNetPortoAngular.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProjectExists(int id)
+        private bool EducationExists(int id)
         {
-            return db.Projects.Count(e => e.ID == id) > 0;
+            return db.Educations.Count(e => e.ID == id) > 0;
         }
     }
 }

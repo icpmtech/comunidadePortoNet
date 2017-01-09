@@ -4,144 +4,45 @@
 }
 
 
-    <div class="well">
-        <h2 class="text-center">Editar projetos</h2>
-        <div class="example">
-            <table id="editing-example-projects" class="table" data-paging="true" data-filtering="false" data-sorting="true">
-                <thead>
-                    <tr>
-                        <th data-name="id" data-breakpoints="xs" data-type="number">ID</th>
-                        <th data-name="jobTitle">Titulo do projeto</th>
-                        <th data-name="subTitle" data-breakpoints="xs">Empresa do projeto</th>
-                        <th data-name="description">Descrição</th>
-                        <th data-name="startedOn" data-breakpoints="xs sm" data-type="date" data-format-string="MMMM Do YYYY">Data de inicio</th>
-                        <th data-name="dob" data-breakpoints="xs sm md" data-type="date" data-format-string="MMMM Do YYYY">Data de Fim</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-expanded="true">
-                        <td>1</td>
-                        <td>Dennise</td>
-                        <td>Fuhrman</td>
-                        <td>High School History Teacher</td>
-                        <td>November 8th 2011</td>
-                        <td>July 25th 1960</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Elodia</td>
-                        <td>Weisz</td>
-                        <td>Wallpaperer Helper</td>
-                        <td>October 15th 2010</td>
-                        <td>March 30th 1982</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Raeann</td>
-                        <td>Haner</td>
-                        <td>Internal Medicine Nurse Practitioner</td>
-                        <td>November 28th 2013</td>
-                        <td>February 26th 1966</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Junie</td>
-                        <td>Landa</td>
-                        <td>Offbearer</td>
-                        <td>October 31st 2010</td>
-                        <td>March 29th 1966</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Solomon</td>
-                        <td>Bittinger</td>
-                        <td>Roller Skater</td>
-                        <td>December 29th 2011</td>
-                        <td>September 22nd 1964</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Bar</td>
-                        <td>Lewis</td>
-                        <td>Clown</td>
-                        <td>November 12th 2012</td>
-                        <td>August 4th 1991</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Usha</td>
-                        <td>Leak</td>
-                        <td>Ships Electronic Warfare Officer</td>
-                        <td>August 14th 2012</td>
-                        <td>November 20th 1979</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Lorriane</td>
-                        <td>Cooke</td>
-                        <td>Technical Services Librarian</td>
-                        <td>September 21st 2010</td>
-                        <td>April 7th 1969</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Nelly</td>
-                        <td>Lusher</td>
-                        <td>Broadcast Maintenance Engineer</td>
-                        <td>October 21st 2013</td>
-                        <td>February 16th 1983</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="modal fade" id="editor-modal-projects" tabindex="-1" role="dialog" aria-labelledby="editor-title-projects">
+<div class="well">
+    <h2 class="text-center">Editar interesses</h2>
+    <div class="example">
+        <table id="editing-example-interestes" class="table" data-paging="true" data-filtering="false" data-sorting="true">
+            <thead>
+                <tr>
+                    <th data-name="ID" data-breakpoints="xs" data-type="number">ID</th>
+                    <th data-name="Description">Nome do interesse</th>
 
-                <div class="modal-dialog" role="document">
-                    <form class="modal-content form-horizontal" id="editor-projects">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <h4 class="modal-title" id="editor-title-projects">Novo projeto</h4>
-                        </div>
-                        <div class="modal-body">
-                            <input type="number" id="id" name="id" class="hidden" />
-                            <div class="form-group required">
-                                <label for="firstName" class="col-sm-3 control-label">Titulo do projeto</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Titulo do projeto" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="jobTitle" class="col-sm-3 control-label">Empresa do projeto</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Titulo do projeto">
-                                </div>
-                            </div>
-                            <div class="form-group required">
-                                <label for="description" class="col-sm-3 control-label">Descrição do projeto</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="description" name="description" placeholder="Descrição do projeto" required>
-                                </div>
-                            </div>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="modal fade" id="editor-modal-interestes" tabindex="-1" role="dialog" aria-labelledby="editor-title-interestes">
 
-                            <div class="form-group required">
-                                <label for="startedOn" class="col-sm-3 control-label">Data de inicio</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control" id="startedOn" name="startedOn" placeholder="Data de inicio" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="dob" class="col-sm-3 control-label">Data de fim</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth">
-                                </div>
+            <div class="modal-dialog" role="document">
+                <form class="modal-content form-horizontal" id="editor-interestes">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="editor-title-interestes">Novo interesse</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="number" id="ID" name="ID" class="hidden" />
+                        <div class="form-group required">
+                            <label for="Description" class="col-sm-3 control-label">Nome do interesse</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="Description" name="Description" placeholder="Nome do interesse" required>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar alterações</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Guardar alterações</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
-        </div>
+    </div>
+</div>
 

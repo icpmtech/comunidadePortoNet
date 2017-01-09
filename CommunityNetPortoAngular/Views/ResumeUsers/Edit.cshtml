@@ -87,7 +87,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.ActionLink("Voltar meu Perfil", "My Profile", null, new { @class = "btn btn-primary pull-left" })
+                    @Html.ActionLink("Voltar meu Perfil", "MyProfile", null, null,null, "profile_resume", null, new { @class = "btn btn-primary pull-left" })
                     <input type="submit" value="Guardar alterações meu perfil" class="btn btn-primary pull-right" />
                 </div>
             </div>
@@ -99,11 +99,14 @@
 @Html.Partial("_EditProjects")
 @Html.Partial("_EditEducation")
 @Html.Partial("_EditLanguages")
+@Html.Partial("_EditInterests")
 @Html.Partial("_EditSkills")
 <div id="back" class="row well">
     <div class="col-md-offset-2 col-md-10">
         <div class="pull-right">
-            @Html.ActionLink("Voltar meu Perfil", "My Profile", null, new { @class = "btn btn-primary " })
+            @Html.ActionLink("Voltar meu Perfil", "MyProfile", null, null, null, "profile_resume", null, new { @class = "btn btn-primary pull-left" })
+
+
         </div>
     </div>
 </div>
@@ -129,6 +132,7 @@
 			$editor = $('#editor'),
 			$editorTitle = $('#editor-title'),
 			ft = FooTable.init('#editing-example', {
+			    "rows": $.get('/api/Experiences'),
 			    "empty": "Sem experiências",
 				editing: {
 				    enabled: true,
@@ -143,15 +147,22 @@
 					},
 					editRow: function(row){
 						var values = row.val();
-						$editor.find('#id').val(values.id);
-						$editor.find('#firstName').val(values.firstName);
-						$editor.find('#description').val(values.description);
-						$editor.find('#jobTitle').val(values.jobTitle);
-						$editor.find('#startedOn').val(values.startedOn.format('YYYY-MM-DD'));
-						$editor.find('#dob').val(values.dob.format('YYYY-MM-DD'));
-
+						$editor.find('#ID').val(values.ID);
+						$editor.find('#Description').val(values.Description);
+						$editor.find('#Title').val(values.Title);
+						$editor.find('#TagLine').val(values.TagLine);
+						var StartedOn= values.StartedOn;
+						var Dob = values.Dob;
+						if (StartedOn == null)
+						    $editor.find('#StartedOn').val(new Date());
+						else
+						    $editor.find('#StartedOn').val(StartedOn.format('YYYY-MM-DD'));
+						if (Dob==null)
+						    $editor.find('#Dob').val(new Date());
+						else
+						    $editor.find('#Dob').val(Dob.format('YYYY-MM-DD'));
 						$modal.data('row', row);
-						$editorTitle.text('Editar experiência #' + values.id);
+						$editorTitle.text('Editar experiência #' + values.ID);
 						$modal.modal('show');
 					},
 					deleteRow: function(row){
@@ -168,19 +179,64 @@
 			e.preventDefault();
 			var row = $modal.data('row'),
 				values = {
-					id: $editor.find('#id').val(),
-					firstName: $editor.find('#firstName').val(),
-					description: $editor.find('#description').val(),
-					jobTitle: $editor.find('#jobTitle').val(),
-					startedOn: moment($editor.find('#startedOn').val(), 'YYYY-MM-DD'),
-					dob: moment($editor.find('#dob').val(), 'YYYY-MM-DD')
+					ID: $editor.find('#ID').val(),
+					Title: $editor.find('#Title').val(),
+					Description: $editor.find('#Description').val(),
+					TagLine: $editor.find('#TagLine').val(),
+					StartedOn: moment($editor.find('#StartedOn').val(), 'YYYY-MM-DD'),
+					Dob: moment($editor.find('#Dob').val(), 'YYYY-MM-DD'),
+
 				};
 
-			if (row instanceof FooTable.Row){
-				row.val(values);
+			if (row instanceof FooTable.Row) {
+			    row.val(values);
+			    $.ajax({
+			        type: "PUT",
+			        url: '/api/Experiences',
+			         dataType: "json",
+			        data: {
+			            ID: values.ID,
+			            Title: values.Title,
+			            TagLine: values.TagLine,
+			            Description: values.Description,
+			            StartedOn: $editor.find('#StartedOn').val(),
+			            Dob: $editor.find('#Dob').val()
+			        },
+
+			        success: function (response) {
+
+
+			        },
+			        fail: function (jqXHR, textStatus, errorThrown) {
+			            console.log(jqXHR);
+			        }
+
+
+			    });
 			} else {
-				values.id = uid++;
-				ft.rows.add(values);
+
+
+			    $.ajax({
+			        type: "POST",
+			        url: ' /api/Experiences',
+			        data: {
+			            ID: values.ID,
+			            Title: values.Title,
+			            TagLine: values.TagLine,
+			            Description: values.Description,
+			            StartedOn: $editor.find('#StartedOn').val(),
+			            Dob: $editor.find('#Dob').val()
+			        },
+			        success: function (response) {
+			            values.ID = response.ID;
+			            ft.rows.add(values);
+
+			        },
+			        fail: function (jqXHR, textStatus, errorThrown) {
+			            console.log(jqXHR);
+			        }
+
+			    });
 			}
 			$modal.modal('hide');
 		});
@@ -208,10 +264,12 @@
 					},
 					editRow: function(row){
 						var values = row.val();
-						$editor.find('#id').val(values.id);
-						$editor.find('#description').val(values.description);
+						$editor.find('#ID').val(values.ID);
+						$editor.find('#Name').val(values.Name);
+						$editor.find('#Link').val(values.Link);
+						$editor.find('#Title').val(values.Title);
 						$modal.data('row', row);
-						$editorTitle.text('Editar projeto #' + values.id);
+						$editorTitle.text('Editar projeto #' + values.ID);
 						$modal.modal('show');
 					},
 					deleteRow: function(row){
@@ -228,8 +286,10 @@
 			e.preventDefault();
 			var row = $modal.data('row'),
 				values = {
-					id: $editor.find('#id').val(),
-					description: $editor.find('#description').val()
+				    ID: $editor.find('#ID').val(),
+				    Name: $editor.find('#Name').val(),
+				    Link: $editor.find('#Link').val(),
+				    Title: $editor.find('#Title').val()
 				};
 
 			if (row instanceof FooTable.Row){
@@ -237,13 +297,22 @@
 			    $.ajax({
 			        type: "PUT",
 			        url: '/api/Projects',
+			         dataType: "json",
 			        data: {
-			            ID: values.id,
-			            Name: values.description
+			            ID: values.ID,
+			            Name: values.Name,
+			            Link: values.Link,
+			            Title: values.Title
 			        },
+
 			        success: function (response) {
-			            alert(response);
+
+
+			        },
+			        fail:function (jqXHR, textStatus, errorThrown) {
+			            console.log(jqXHR);
 			        }
+
 
 			    });
 			} else {
@@ -253,18 +322,21 @@
 				    type: "POST",
 				    url: ' /api/Projects',
 				    data: {
-				        ID: values.id,
-				        Name:values.description
+				        ID: values.ID,
+				        Name: values.Name
 				    },
 				    success: function(response) {
-				        values.id = uid++;
+				        values.ID = response.ID;
 				        ft.rows.add(values);
-				        $modal.modal('hide');
+
+				    },
+				    fail:function(jqXHR, textStatus, errorThrown) {
+				        console.log(jqXHR);
 				    }
 
 				});
 			}
-
+			$modal.modal('hide');
 		});
 	});
 	jQuery(function ($) {
@@ -272,6 +344,7 @@
 			$editor = $('#editor-languages'),
 			$editorTitle = $('#editor-title-languages'),
 			ft = FooTable.init('#editing-example-languages', {
+			    "rows": $.get('/api/Languages'),
 			    "empty": "Sem linguagens",
 			    editing: {
 			        enabled: true,
@@ -286,15 +359,13 @@
 			        },
 			        editRow: function (row) {
 			            var values = row.val();
-			            $editor.find('#id').val(values.id);
-			            $editor.find('#firstName').val(values.firstName);
-			            $editor.find('#description').val(values.description);
-			            $editor.find('#jobTitle').val(values.jobTitle);
-			            $editor.find('#startedOn').val(values.startedOn.format('YYYY-MM-DD'));
-			            $editor.find('#dob').val(values.dob.format('YYYY-MM-DD'));
+			            $editor.find('#ID').val(values.ID);
+			            $editor.find('#Description').val(values.Description);
+			            $editor.find('#Value').val(values.Value);
+
 
 			            $modal.data('row', row);
-			            $editorTitle.text('Editar linguagem #' + values.id);
+			            $editorTitle.text('Editar linguagem #' + values.ID);
 			            $modal.modal('show');
 			        },
 			        deleteRow: function (row) {
@@ -311,20 +382,60 @@
 	        e.preventDefault();
 	        var row = $modal.data('row'),
 				values = {
-				    id: $editor.find('#id').val(),
-				    firstName: $editor.find('#firstName').val(),
-				    description: $editor.find('#description').val(),
-				    jobTitle: $editor.find('#jobTitle').val(),
-				    startedOn: moment($editor.find('#startedOn').val(), 'YYYY-MM-DD'),
-				    dob: moment($editor.find('#dob').val(), 'YYYY-MM-DD')
+				    ID: $editor.find('#ID').val(),
+				    Description: $editor.find('#Description').val(),
+				    Value: $editor.find('#Value').val(),
+
 				};
 
 	        if (row instanceof FooTable.Row) {
 	            row.val(values);
+	            $.ajax({
+	                type: "PUT",
+	                url: '/api/Languages',
+	                dataType: "json",
+	                data: {
+	                    ID: values.ID,
+	                    Value: values.Value,
+	                    Description: values.Description,
+
+	                },
+
+	                success: function (response) {
+
+
+	                },
+	                fail: function (jqXHR, textStatus, errorThrown) {
+	                    console.log(jqXHR);
+	                }
+
+
+	            });
 	        } else {
-	            values.id = uid++;
-	            ft.rows.add(values);
+
+
+	            $.ajax({
+	                type: "POST",
+	                url: ' /api/Languages',
+	                 dataType: "json",
+	                data: {
+	                    ID: values.ID,
+	                    Value: values.Value,
+	                    Description: values.Description,
+
+	                },
+	                success: function (response) {
+	                    values.ID = response.ID;
+	                    ft.rows.add(values);
+
+	                },
+	                fail: function (jqXHR, textStatus, errorThrown) {
+	                    console.log(jqXHR);
+	                }
+
+	            });
 	        }
+
 	        $modal.modal('hide');
 	    });
 	});
@@ -333,29 +444,38 @@
 			$editor = $('#editor-education'),
 			$editorTitle = $('#editor-title-education'),
 			ft = FooTable.init('#editing-example-education', {
-			    "empty": "Sem formações",
+			    "rows": $.get('/api/Educations'),
+			    "empty": "Sem Habilitações",
 			    editing: {
 			        enabled: true,
-			        "showText": '<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Editar formação',
+			        "showText": '<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Editar Habilitação',
 			        "hideText": "Cancelar",
-			        "addText": "Nova formação",
+			        "addText": "Nova Habilitação",
 			        addRow: function () {
 			            $modal.removeData('row');
 			            $editor[0].reset();
-			            $editorTitle.text('Nova formação');
+			            $editorTitle.text('Nova Habilitação');
 			            $modal.modal('show');
 			        },
 			        editRow: function (row) {
 			            var values = row.val();
-			            $editor.find('#id').val(values.id);
-			            $editor.find('#firstName').val(values.firstName);
-			            $editor.find('#description').val(values.description);
-			            $editor.find('#jobTitle').val(values.jobTitle);
-			            $editor.find('#startedOn').val(values.startedOn.format('YYYY-MM-DD'));
-			            $editor.find('#dob').val(values.dob.format('YYYY-MM-DD'));
+			            $editor.find('#ID').val(values.ID);
+			            $editor.find('#Title').val(values.Title);
+			            $editor.find('#Description').val(values.Description);
+
+			            var StartedOn = values.StartedOn;
+			            var Dob = values.Dob;
+			            if (StartedOn == null)
+			                $editor.find('#StartedOn').val(new Date());
+			            else
+			                $editor.find('#StartedOn').val(StartedOn.format('YYYY-MM-DD'));
+			            if (Dob == null)
+			                $editor.find('#Dob').val(new Date());
+			            else
+			                $editor.find('#Dob').val(Dob.format('YYYY-MM-DD'));
 
 			            $modal.data('row', row);
-			            $editorTitle.text('Editar formação #' + values.id);
+			            $editorTitle.text('Editar formação #' + values.ID);
 			            $modal.modal('show');
 			        },
 			        deleteRow: function (row) {
@@ -372,20 +492,163 @@
 	        e.preventDefault();
 	        var row = $modal.data('row'),
 				values = {
-				    id: $editor.find('#id').val(),
-				    firstName: $editor.find('#firstName').val(),
-				    description: $editor.find('#description').val(),
-				    jobTitle: $editor.find('#jobTitle').val(),
-				    startedOn: moment($editor.find('#startedOn').val(), 'YYYY-MM-DD'),
-				    dob: moment($editor.find('#dob').val(), 'YYYY-MM-DD')
+				    ID: $editor.find('#ID').val(),
+				    Title: $editor.find('#Title').val(),
+				    Description: $editor.find('#Description').val(),
+
+				    StartedOn: moment($editor.find('#StartedOn').val(), 'YYYY-MM-DD'),
+				    Dob: moment($editor.find('#Dob').val(), 'YYYY-MM-DD')
 				};
 
 	        if (row instanceof FooTable.Row) {
 	            row.val(values);
+	            $.ajax({
+	                type: "PUT",
+	                url: '/api/Educations',
+	                 dataType: "json",
+	                data: {
+	                    ID: values.ID,
+	                    Title: values.Title,
+	                    Description: values.Description,
+	                    StartedOn: $editor.find('#StartedOn').val(),
+	                    Dob: $editor.find('#Dob').val()
+	                },
+
+	                success: function (response) {
+
+
+	                },
+	                fail: function (jqXHR, textStatus, errorThrown) {
+	                    console.log(jqXHR);
+	                }
+
+
+	            });
 	        } else {
-	            values.id = uid++;
-	            ft.rows.add(values);
+
+
+	            $.ajax({
+	                type: "POST",
+	                url: ' /api/Educations',
+	                data: {
+	                    ID: values.ID,
+	                    Title: values.Title,
+	                    Description: values.Description,
+	                    StartedOn: $editor.find('#StartedOn').val(),
+	                    Dob: $editor.find('#Dob').val()
+	                },
+	                success: function (response) {
+	                    values.ID = response.ID;
+	                    ft.rows.add(values);
+
+	                },
+	                fail: function (jqXHR, textStatus, errorThrown) {
+	                    console.log(jqXHR);
+	                }
+
+	            });
 	        }
+	        $modal.modal('hide');
+	    });
+	});
+	jQuery(function ($) {
+	    var $modal = $('#editor-modal-interestes'),
+			$editor = $('#editor-interestes'),
+			$editorTitle = $('#editor-title-interestes'),
+			ft = FooTable.init('#editing-example-interestes', {
+			    "rows": $.get('/api/Interests'),
+			    "empty": "Sem interesses",
+			    editing: {
+			        enabled: true,
+			        "showText": '<span class="fooicon fooicon-pencil" aria-hidden="true"></span> Editar interesse',
+			        "hideText": "Cancelar",
+			        "addText": "Novo interesse",
+			        addRow: function () {
+			            $modal.removeData('row');
+			            $editor[0].reset();
+			            $editorTitle.text('Novo interesse');
+			            $modal.modal('show');
+			        },
+			        editRow: function (row) {
+			            var values = row.val();
+			            $editor.find('#ID').val(values.ID);
+			            $editor.find('#Description').val(values.Description);
+
+
+
+			            $modal.data('row', row);
+			            $editorTitle.text('Editar interesse #' + values.ID);
+			            $modal.modal('show');
+			        },
+			        deleteRow: function (row) {
+			            if (confirm('Tens certeza que queres apagar a interesse?')) {
+			                row.delete();
+			            }
+			        }
+			    }
+			}),
+			uid = 10;
+
+	    $editor.on('submit', function (e) {
+	        if (this.checkValidity && !this.checkValidity()) return;
+	        e.preventDefault();
+	        var row = $modal.data('row'),
+				values = {
+				    ID: $editor.find('#ID').val(),
+				    Description: $editor.find('#Description').val(),
+
+
+				};
+
+	        if (row instanceof FooTable.Row) {
+	            row.val(values);
+	            $.ajax({
+	                type: "PUT",
+	                url: '/api/Interests',
+	                 dataType: "json",
+	                data: {
+	                    ID: values.ID,
+
+	                    Description: values.Description,
+
+	                },
+
+	                success: function (response) {
+
+
+	                },
+	                fail: function (jqXHR, textStatus, errorThrown) {
+	                    console.log(jqXHR);
+	                }
+
+
+	            });
+	        } else {
+
+
+	            $.ajax({
+	                type: "POST",
+	                url: ' /api/Interests',
+	                 dataType: "json",
+	                data: {
+	                    ID: values.ID,
+
+	                    Description: values.Description,
+
+	                },
+	                success: function (response) {
+
+	                    values.ID = response.ID;
+	                    ft.rows.add(values);
+
+	                },
+	                fail: function (jqXHR, textStatus, errorThrown) {
+	                    console.log(jqXHR);
+	                }
+
+	            });
+	        }
+
 	        $modal.modal('hide');
 	    });
 	});
@@ -394,6 +657,7 @@
 			$editor = $('#editor-skills'),
 			$editorTitle = $('#editor-title-skills'),
 			ft = FooTable.init('#editing-example-skills', {
+			    "rows": $.get('/api/Skills'),
 			    "empty": "Sem skills",
 			    editing: {
 			        enabled: true,
@@ -408,11 +672,11 @@
 			        },
 			        editRow: function (row) {
 			            var values = row.val();
-			            $editor.find('#id').val(values.id);
-			            $editor.find('#title-skill').val(values.title);
-			            $editor.find('#value-skill').val(values.value);
+			            $editor.find('#ID').val(values.ID);
+			            $editor.find('#Name').val(values.Name);
+			            $editor.find('#Value').val(values.Value);
 			            $modal.data('row', row);
-			            $editorTitle.text('Editar Skill #' + values.id);
+			            $editorTitle.text('Editar Skill #' + values.ID);
 			            $modal.modal('show');
 			        },
 			        deleteRow: function (row) {
@@ -429,17 +693,58 @@
 	        e.preventDefault();
 	        var row = $modal.data('row'),
 				values = {
-				    id: $editor.find('#id').val(),
-				    title: $editor.find('#title-skill').val(),
-				    value: $editor.find('#value-skill').val(),
+				    ID: $editor.find('#ID').val(),
+				    Name: $editor.find('#Name').val(),
+				    Value: $editor.find('#Value').val(),
 
 				};
 
 	        if (row instanceof FooTable.Row) {
 	            row.val(values);
+	            $.ajax({
+	                type: "PUT",
+	                url: '/api/Skills',
+	                dataType: "json",
+	                data: {
+	                    ID: values.ID,
+	                    Value: values.Value,
+	                    Name: values.Name,
+
+	                },
+
+	                success: function (response) {
+
+
+	                },
+	                fail: function (jqXHR, textStatus, errorThrown) {
+	                    console.log(jqXHR);
+	                }
+
+
+	            });
 	        } else {
-	            values.id = uid++;
-	            ft.rows.add(values);
+
+
+	            $.ajax({
+	                type: "POST",
+	                url: ' /api/Skills',
+	                dataType: "json",
+	                data: {
+	                    ID: values.ID,
+	                    Value: values.Value,
+	                    Name: values.Name,
+
+	                },
+	                success: function (response) {
+	                    values.ID = response.ID;
+	                    ft.rows.add(values);
+
+	                },
+	                fail: function (jqXHR, textStatus, errorThrown) {
+	                    console.log(jqXHR);
+	                }
+
+	            });
 	        }
 	        $modal.modal('hide');
 	    });

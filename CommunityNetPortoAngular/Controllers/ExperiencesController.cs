@@ -13,49 +13,49 @@ using CommunityNetPortoAngular.Models;
 
 namespace CommunityNetPortoAngular.Controllers
 {
-    public class ProjectsController : ApiController
+    public class ExperiencesController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Projects
-        public IQueryable<Project> GetProjects()
+        // GET: api/Experiences
+        public IQueryable<Experience> GetExperiences()
         {
             if (User.Identity.IsAuthenticated)
             {
-                IQueryable<Project> projects= db.Projects.Where(q => q.ResumeUser.ApplicationUser.UserName == User.Identity.Name);
-                return projects;
+                IQueryable<Experience> experiences = db.Experiences.Where(q => q.ResumeUser.ApplicationUser.UserName == User.Identity.Name);
+                return experiences;
             }
             return null;
         }
 
-        // GET: api/Projects/5
-        [ResponseType(typeof(Project))]
-        public async Task<IHttpActionResult> GetProject(int id)
+        // GET: api/Experiences/5
+        [ResponseType(typeof(Experience))]
+        public async Task<IHttpActionResult> GetExperience(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Experience experience = await db.Experiences.FindAsync(id);
+            if (experience == null)
             {
                 return NotFound();
             }
 
-            return Ok(project);
+            return Ok(experience);
+
         }
 
-        // PUT: api/Projects/5
+        // PUT: api/Experiences/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutProject( ProjectViewModel projectViewModel)
+        public async Task<IHttpActionResult> PutExperience(ExperienceViewModel experienceViewModel)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if ( projectViewModel.ID==null)
+            if (experienceViewModel.ID == null)
             {
                 return BadRequest();
             }
-            Project project = new Project { ID = projectViewModel.ID ?? 0, Name = projectViewModel.Name, Title = projectViewModel.Title, Link = projectViewModel.Link };
+            Experience project = new Experience { ID = experienceViewModel.ID ?? 0, Dob = experienceViewModel.Dob, StartedOn = experienceViewModel.StartedOn, Description = experienceViewModel.Description, Title = experienceViewModel.Title, TagLine = experienceViewModel.TagLine};
             if (User.Identity.IsAuthenticated)
             {
                 project.ResumeUser = db.Resumes.Where(s => s.ApplicationUser.UserName == User.Identity.Name).FirstOrDefault();
@@ -68,7 +68,7 @@ namespace CommunityNetPortoAngular.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(projectViewModel.ID??0))
+                if (!ExperienceExists(experienceViewModel.ID ?? 0))
                 {
                     return NotFound();
                 }
@@ -81,41 +81,41 @@ namespace CommunityNetPortoAngular.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Projects
-        [ResponseType(typeof(Project))]
-        public async Task<IHttpActionResult> PostProject(ProjectViewModel projectViewModel)
+        // POST: api/Experiences
+        [ResponseType(typeof(Experience))]
+        public async Task<IHttpActionResult> PostExperience(ExperienceViewModel experienceViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Project project = new Project { ID = projectViewModel.ID ?? 0, Name = projectViewModel.Name, Title = projectViewModel.Title, Link = projectViewModel.Link };
+            Experience project = new Experience { ID = experienceViewModel.ID ?? 0, Dob = experienceViewModel.Dob, StartedOn = experienceViewModel.StartedOn, Description = experienceViewModel.Description, Title = experienceViewModel.Title, TagLine = experienceViewModel.TagLine };
 
             if (User.Identity.IsAuthenticated)
             {
                 project.ResumeUser = db.Resumes.Where(s => s.ApplicationUser.UserName == User.Identity.Name).FirstOrDefault();
             }
-            db.Projects.Add(project);
+            db.Experiences.Add(project);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = project.ID }, project);
         }
 
-        // DELETE: api/Projects/5
-        [ResponseType(typeof(Project))]
-        public async Task<IHttpActionResult> DeleteProject(int id)
+        // DELETE: api/Experiences/5
+        [ResponseType(typeof(Experience))]
+        public async Task<IHttpActionResult> DeleteExperience(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Experience experience = await db.Experiences.FindAsync(id);
+            if (experience == null)
             {
                 return NotFound();
             }
 
-            db.Projects.Remove(project);
+            db.Experiences.Remove(experience);
             await db.SaveChangesAsync();
 
-            return Ok(project);
+            return Ok(experience);
         }
 
         protected override void Dispose(bool disposing)
@@ -127,9 +127,9 @@ namespace CommunityNetPortoAngular.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProjectExists(int id)
+        private bool ExperienceExists(int id)
         {
-            return db.Projects.Count(e => e.ID == id) > 0;
+            return db.Experiences.Count(e => e.ID == id) > 0;
         }
     }
 }

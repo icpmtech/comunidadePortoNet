@@ -19,7 +19,7 @@ namespace CommunityNetPortoAngular.Controllers
         // GET: ResumeUsers
         public async Task<ActionResult> Index()
         {
-            return View(await db.Resumes.ToListAsync());
+            return View(await db.Resumes.Include("Skills").Include("Experiences").Include("Educations").Include("Proficiencies").Include("Languages").Include("Interests").Include("Projects").ToListAsync());
         }
 
         // GET: ResumeUsers/Details/5
@@ -40,7 +40,8 @@ namespace CommunityNetPortoAngular.Controllers
         public async Task<ActionResult> MyProfile()
         {
             if (User.Identity.IsAuthenticated)
-                return View(await db.Resumes.Include("ApplicationUser").Where(s => s.ApplicationUser.UserName == User.Identity.Name).SingleOrDefaultAsync());
+
+                return View(await db.Resumes.Include("ApplicationUser").Include("Experiences").Include("Educations").Include("Skills").Include("Proficiencies").Include("Languages").Include("Interests").Include("Projects").Where(s => s.ApplicationUser.UserName == User.Identity.Name).SingleOrDefaultAsync());
             else
                 return View();
 

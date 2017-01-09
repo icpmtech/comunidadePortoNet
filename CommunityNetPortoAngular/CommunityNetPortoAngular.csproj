@@ -104,6 +104,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -254,39 +255,40 @@
     <Compile Include="Controllers\ArticleRatingsController.cs" />
     <Compile Include="Controllers\ArticlesDetailsDTOesController.cs" />
     <Compile Include="Controllers\ArticleUsersController.cs" />
+    <Compile Include="Controllers\EducationsController.cs" />
+    <Compile Include="Controllers\EducationViewModel.cs" />
+    <Compile Include="Controllers\ExperiencesController.cs" />
+    <Compile Include="Controllers\ExperienceViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterestsController.cs" />
+    <Compile Include="Controllers\InterestViewModel.cs" />
+    <Compile Include="Controllers\LanguagesController.cs" />
+    <Compile Include="Controllers\LanguageViewModel.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProficienciesController.cs" />
+    <Compile Include="Controllers\ProficiencyViewModel.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\ProjectViewModel.cs" />
     <Compile Include="Controllers\ResumeUsersController.cs" />
+    <Compile Include="Controllers\SkillsController.cs" />
+    <Compile Include="Controllers\SkillViewModel.cs" />
     <Compile Include="Controllers\SuggestionViewModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HelperSplit.cs" />
-    <Compile Include="Migrations\201612271024571_Init.cs" />
-    <Compile Include="Migrations\201612271024571_Init.Designer.cs">
-      <DependentUpon>201612271024571_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201701091505365_Init.cs" />
+    <Compile Include="Migrations\201701091505365_Init.Designer.cs">
+      <DependentUpon>201701091505365_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612271203064_ArticleRating.cs" />
-    <Compile Include="Migrations\201612271203064_ArticleRating.Designer.cs">
-      <DependentUpon>201612271203064_ArticleRating.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612271423571_ArticleSummary.cs" />
-    <Compile Include="Migrations\201612271423571_ArticleSummary.Designer.cs">
-      <DependentUpon>201612271423571_ArticleSummary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612271448182_ArticleUpdateTypes_Date.cs" />
-    <Compile Include="Migrations\201612271448182_ArticleUpdateTypes_Date.Designer.cs">
-      <DependentUpon>201612271448182_ArticleUpdateTypes_Date.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612291304196_AddArticleImage.cs" />
-    <Compile Include="Migrations\201612291304196_AddArticleImage.Designer.cs">
-      <DependentUpon>201612291304196_AddArticleImage.cs</DependentUpon>
+    <Compile Include="Migrations\201701091537263_Init1.cs" />
+    <Compile Include="Migrations\201701091537263_Init1.Designer.cs">
+      <DependentUpon>201701091537263_Init1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Experience.cs" />
+    <Compile Include="Models\Interest.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Proficiency.cs" />
     <Compile Include="Models\Project.cs" />
@@ -1818,7 +1820,9 @@
     <Content Include="themes\krajee-uni\theme.js" />
     <Content Include="themes\krajee-uni\theme.min.css" />
     <Content Include="themes\krajee-uni\theme.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1916,24 +1920,16 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612271024571_Init.resx">
-      <DependentUpon>201612271024571_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612271203064_ArticleRating.resx">
-      <DependentUpon>201612271203064_ArticleRating.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612271423571_ArticleSummary.resx">
-      <DependentUpon>201612271423571_ArticleSummary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612271448182_ArticleUpdateTypes_Date.resx">
-      <DependentUpon>201612271448182_ArticleUpdateTypes_Date.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612291304196_AddArticleImage.resx">
-      <DependentUpon>201612291304196_AddArticleImage.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <EmbeddedResource Include="Migrations\201701091505365_Init.resx">
+      <DependentUpon>201701091505365_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701091537263_Init1.resx">
+      <DependentUpon>201701091537263_Init1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

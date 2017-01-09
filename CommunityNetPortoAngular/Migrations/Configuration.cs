@@ -9,8 +9,7 @@ namespace CommunityNetPortoAngular.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "CommunityNetPortoAngular.Models.ApplicationDbContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(CommunityNetPortoAngular.Models.ApplicationDbContext context)

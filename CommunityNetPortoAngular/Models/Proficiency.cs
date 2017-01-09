@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CommunityNetPortoAngular.Models
 {
@@ -10,5 +11,7 @@ namespace CommunityNetPortoAngular.Models
         [Display(Name = "Valor")]
         public string Value { get; set; }
         public ResumeUser ResumeUser { get; set; }
+        public DateTime? StartedOn { get; set; }
+        public DateTime? Dob { get; set; }
     }
 }

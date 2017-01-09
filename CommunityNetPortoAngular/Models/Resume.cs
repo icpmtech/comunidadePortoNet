@@ -40,7 +40,7 @@ namespace CommunityNetPortoAngular.Models
         public List<Skill> Skills { get; set; }
         public List<Proficiency> Proficiencies { get; set; }
         public List<Education> Educations { get; set; }
-        public List<Interest> Languages { get; set; }
+        public List<Language> Languages { get; set; }
         public List<Interest> Interests { get; set; }
         public double Rating_ { get; set; }
         public int Rating { get; set; }
