@@ -1852,6 +1852,7 @@
     <Content Include="Views\ResumeUsers\_EditInterests.cshtml" />
     <Content Include="Views\ResumeUsers\_EditLanguages.cshtml" />
     <Content Include="Views\ResumeUsers\_EditSkills.cshtml" />
+    <Content Include="Views\ResumeUsers\MyProfileByUser.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml_" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />

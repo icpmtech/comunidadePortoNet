@@ -28,7 +28,7 @@
                     <p>
                         @Html.DisplayFor(modelItem => item.Summary)
                     </p>
-                    <a href="#" class="btn btn-light" role="button">
+                    <a href="@Url.Action("MyProfileByUser","ResumeUsers", new { id = item.ApplicationUser.Id })" class="btn btn-light" role="button">
                         <i class="fa fa-user fa-fw fa-3x"></i>@item.ApplicationUser.UserName</a>
 
                         <a href="@Url.Action("Details","ArticleUsers", new { id=item.ID })#articles_details" class="btn btn-lg btn-primary" role="button">Saber mais  &raquo;</a>

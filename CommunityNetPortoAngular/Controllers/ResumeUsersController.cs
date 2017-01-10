@@ -46,6 +46,16 @@ namespace CommunityNetPortoAngular.Controllers
                 return View();
 
         }
+        // GET: ResumeUsers/MyProfileByUser
+        public async Task<ActionResult> MyProfileByUser(string id)
+        {
+            if (User.Identity.IsAuthenticated)
+
+                return View(await db.Resumes.Include("ApplicationUser").Include("Experiences").Include("Educations").Include("Skills").Include("Proficiencies").Include("Languages").Include("Interests").Include("Projects").Where(s => s.ApplicationUser.Id == id).SingleOrDefaultAsync());
+            else
+                return View();
+
+        }
 
         // GET: ResumeUsers/Create
         public ActionResult Create()
