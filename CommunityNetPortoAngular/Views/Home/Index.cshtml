@@ -69,7 +69,7 @@
                         <li><i class="mdi-action-done"></i>O Porto e o .Net crescem connosco</li>
                         <li><i class="mdi-action-done"></i>Vamos crescer juntos</li>
                     </ul>
-                    <a href="@Url.Action("Register","Account")#register" class="btn btn-lg btn-primary">Junta te a nós agora!</a>
+                    <a href="@Url.Action("Register", "Account")#register" class="btn btn-lg btn-primary">Junta te a nós agora!</a>
                 </div>
             </div>
         </div>
@@ -80,78 +80,17 @@
     <div class="container">
         <div class="row text-center">
             <h3 class="title-small wow bounce" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 300ms; animation-name: none;">Junta te a nós e Cresce connosco</h3>
-            <a href="https://localhost:44379/Account/Login#login" class="btn btn-lg btn-border">Entrar</a>
+            <a href="@Url.Action("Login", "Account")#login" class="btn btn-lg btn-border">Entrar</a>
         </div>
     </div>
 </section>
 
-<section id="testimonial" class="section">
-    <div class="container">
-        <div class="section-header text-center wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="400ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 400ms; animation-name: none;">
-            <h1 class="section-title">Que dizem as pessoas sobre Nós</h1>
-            <h2 class="section-subtitle">Comunidade Porto .Net</h2>
-        </div>
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 400ms; animation-name: none;">
-                <div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#testimonial-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#testimonial-carousel" data-slide-to="1" class=""></li>
-                        <li data-target="#testimonial-carousel" data-slide-to="2" class=""></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="item text-center active">
-                            <p>Espero que a criação desta comunidade ajude a que cada vez mais pessoas participem na divulgação do porto no mundo assim como o .Net, contém comigo e minha experiência para crescer!</p>
-                            <div class="meta">
-                                <p>Altran Specialist <span><a href="http://wingthemes.com/">Pedro Martins</a></span></p>
-                            </div>
-                        </div>
-                        <div class="item text-center">
-                            <p>Torna te um de nós e envia teu testemunho por mail, Twitter ou Facebook</p>
-                            <div class="meta">
-                                <p>Testemunhos <span><a href="#">O Teu</a></span></p>
-                            </div>
-                        </div>
-                        <div class="item text-center">
-                            <p>Faz teu registo e divulga os teus artigos!</p>
-                            <div class="meta">
-                                <p>A crescer <span><a href="#">Contigo regista te</a></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@Html.Action("_Statements", "Home")
 <section id="counter" class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 300ms; animation-name: none;">
-                <div class="counter-item">
-                    <div class="icon">
-                        <i class="mdi-action-get-app"></i>
-                    </div>
-                    <h3 class="timer">3</h3>
-                    <hr>
-                    <h5>
-                        Artigos
-                    </h5>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 500ms; animation-name: none;">
-                <div class="counter-item">
-                    <div class="icon">
-                        <i class="mdi-action-face-unlock"></i>
-                    </div>
-                    <h3 class="timer">30</h3>
-                    <hr>
-                    <h5>
-                        Utilizadores registados
-                    </h5>
-                </div>
-            </div>
+            @{Html.RenderAction("NumberOfArticles", "Home");}
+            @{Html.RenderAction("NumberOfUsers", "Home");}
             <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="700ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 700ms; animation-name: none;">
                 <div class="counter-item">
                     <div class="icon">

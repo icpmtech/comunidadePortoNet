@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CommunityNetPortoAngular.Models.Statement>
+@{
+    Layout = null;
+    var flagShow = true;
+    var flagShowBody = true;
+
+}
+
+
+<section id="testimonial" class="section">
+    <div class="container">
+        <div class="section-header text-center wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="400ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 400ms; animation-name: none;">
+            <h1 class="section-title">Que dizem as pessoas sobre Nós</h1>
+            <h2 class="section-subtitle">Comunidade Porto .Net</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms" style="visibility: hidden; animation-duration: 1000ms; animation-delay: 400ms; animation-name: none;">
+                <div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        @foreach (var item in Model)
+                        {
+                            if (flagShow)
+                            {
+                                <li data-target="#testimonial-carousel" data-slide-to="@item.ID" class="active"></li>
+                                flagShow = false;
+                            }
+                            else
+                            {
+                        <li data-target="#testimonial-carousel" data-slide-to="@item.ID" ></li>}
+
+                        }
+
+                    </ol>
+                    <div class="carousel-inner">
+
+
+                            @foreach (var item in Model)
+                            {
+                                if (flagShowBody)
+                                {
+                                    <div class="item text-center active ">
+                                        <p>@item.Description</p>
+                                        <div class="meta">
+                                            <p>@item.Tag <span><a href="@item.Link">@item.Name</a></span></p>
+                                        </div>
+                                    </div>
+                                    flagShowBody = false;
+                                }
+                                else
+                                {
+                                    <div class="item text-center ">
+                                        <p>@item.Description</p>
+                                        <div class="meta">
+                                            <p>@item.Tag <span><a href="@item.Link">@item.Name</a></span></p>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            }
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

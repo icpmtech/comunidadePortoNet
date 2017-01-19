@@ -13,10 +13,28 @@ namespace CommunityNetPortoAngular.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         [AllowAnonymous]
+
         public ActionResult Index()
         {
             return View();
         }
+        [AllowAnonymous]
+        public PartialViewResult NumberOfUsers()
+        {
+
+            return PartialView(new NumberUserViewModel { Value = db.ArticlesUsers.Where(q => q.Publish == true).Count()+1 });
+        }
+        [AllowAnonymous]
+        public PartialViewResult NumberOfEvents()
+        {
+            return PartialView();
+        }
+        [AllowAnonymous]
+        public PartialViewResult NumberOfArticles()
+        {
+            return PartialView(new NumberArticlesViewModel { Value = db.Users.Count()+1 });
+        }
+
 
         public ActionResult About()
         {
@@ -28,7 +46,7 @@ namespace CommunityNetPortoAngular.Controllers
         public ActionResult _TopArticles()
         {
 
-                return View( db.ArticlesUsers.Include("ApplicationUser").OrderBy(s => s.Rating).Take(10).ToList());
+                return View( db.ArticlesUsers.Include("ApplicationUser").Where(q=>q.Publish==true).OrderBy(s => s.Rating ).Take(10).ToList());
 
 
 
@@ -37,7 +55,16 @@ namespace CommunityNetPortoAngular.Controllers
         public ActionResult _Articles()
         {
 
-            return View(db.ArticlesUsers.Include("ApplicationUser").OrderBy(s => s.Rating).ToList());
+            return View(db.ArticlesUsers.Include("ApplicationUser").Where(q => q.Publish == true).OrderBy(s => s.Rating).ToList());
+
+
+
+        }
+        [AllowAnonymous]
+        public ActionResult _Statements()
+        {
+
+            return View(db.Statements.Include("ResumeUser").Where(q => q.Publish == true).ToList());
 
 
 

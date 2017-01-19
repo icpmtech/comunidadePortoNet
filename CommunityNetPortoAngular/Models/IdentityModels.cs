@@ -44,5 +44,7 @@ namespace CommunityNetPortoAngular.Models
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Education> Educations { get; set; }
 
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Interest> Interests { get; set; }
+        public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Statement> Statements { get; set; }
+
     }
 }

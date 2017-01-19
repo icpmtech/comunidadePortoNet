@@ -38,6 +38,8 @@ namespace CommunityNetPortoAngular.Models
         public int Rating { get; set; }
         public double Total { get;  set; }
         public int Vote { get;  set; }
+        [Display(Name = "Publicar")]
+        public bool? Publish { get; set; }
     }
     public class ArticleRating
     {

@@ -8,125 +8,112 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CommunityNetPortoAngular.Models;
-using CommunityNetPortoAngular.DAL;
 
 namespace CommunityNetPortoAngular.Controllers
 {
-    [Authorize]
-    public class ArticleUsersController : Controller
+   // [Authorize(Roles ="Admin")]
+     [Authorize(Users ="miguelrox@msn.com")]
+    public class StatementsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        // private UnitOfWork unitOfWork = new UnitOfWork();
-        //private IArticleUserRepository articleUserRepository;
-        //public ArticleUsersController()
-        //{
-        //    this.articleUserRepository = new ArticleUserRepository(new ApplicationDbContext());
-        //}
-        // GET: ArticleUsers
+
+        // GET: Statements
         public async Task<ActionResult> Index()
         {
-
-            if (User.Identity.IsAuthenticated)
-                return View(await db.ArticlesUsers.Where(s => s.ApplicationUser.UserName == User.Identity.Name).ToListAsync());
-            else
-                return View();
+            return View(await db.Statements.ToListAsync());
         }
-        [AllowAnonymous]
-        // GET: ArticleUsers/Details/5
+
+        // GET: Statements/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ArticleUser articleUser = await db.ArticlesUsers.Include("ApplicationUser").SingleOrDefaultAsync(i => i.ID == id); ;
-            if (articleUser == null)
+            Statement statement = await db.Statements.FindAsync(id);
+            if (statement == null)
             {
                 return HttpNotFound();
             }
-            return View(articleUser);
+            return View(statement);
         }
 
-        // GET: ArticleUsers/Create
+        // GET: Statements/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ArticleUsers/Create
+        // POST: Statements/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Name,Title,ImageUrl,Header,Footer,Summary,Content,Publish")] ArticleUser articleUser)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Description,Link,Publish,Tag,Name")] Statement statement)
         {
             if (ModelState.IsValid)
             {
-               var user= db.Users.First(s => s.UserName == User.Identity.Name);
-                articleUser.ApplicationUser = user;
-                articleUser.CreationDate_=DateTime.Now;
-                db.ArticlesUsers.Add(articleUser);
+                db.Statements.Add(statement);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(articleUser);
+            return View(statement);
         }
 
-        // GET: ArticleUsers/Edit/5
+        // GET: Statements/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ArticleUser articleUser = await db.ArticlesUsers.FindAsync(id);
-            if (articleUser == null)
+            Statement statement = await db.Statements.FindAsync(id);
+            if (statement == null)
             {
                 return HttpNotFound();
             }
-            return View(articleUser);
+            return View(statement);
         }
 
-        // POST: ArticleUsers/Edit/5
+        // POST: Statements/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name,Title,ImageUrl,Header,Footer,Summary,Content,Publish")] ArticleUser articleUser)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Description,Link,Publish,Tag,Name")] Statement statement)
         {
             if (ModelState.IsValid)
             {
-
-                db.Entry(articleUser).State = EntityState.Modified;
+                db.Entry(statement).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(articleUser);
+            return View(statement);
         }
 
-        // GET: ArticleUsers/Delete/5
+        // GET: Statements/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ArticleUser articleUser = await db.ArticlesUsers.FindAsync(id);
-            if (articleUser == null)
+            Statement statement = await db.Statements.FindAsync(id);
+            if (statement == null)
             {
                 return HttpNotFound();
             }
-            return View(articleUser);
+            return View(statement);
         }
 
-        // POST: ArticleUsers/Delete/5
+        // POST: Statements/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ArticleUser articleUser = await db.ArticlesUsers.FindAsync(id);
-            db.ArticlesUsers.Remove(articleUser);
+            Statement statement = await db.Statements.FindAsync(id);
+            db.Statements.Remove(statement);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
