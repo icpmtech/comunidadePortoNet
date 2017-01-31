@@ -1,0 +1,83 @@
+﻿@model CommunityNetPortoAngular.Models.Offer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="offers_delete">
+    <h2 class="text-center">Apagar</h2>
+
+    <h3 class="text-center">Tens certeza que queres eliminar a oferta?</h3>
+    <div>
+        <h4>Oferta</h4>
+        <hr />
+        <dl class="text-center">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NumberReference)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NumberReference)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LocalJob)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LocalJob)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Link)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Apagar" class="btn btn-default" /> |
+                @Html.ActionLink("Voltar á minha lista", "Index", "Offers", null, null, "offers_home", null, new { @class = "btn btn-primary btn-lg" })
+            </div>
+        }
+    </div>
+</div>

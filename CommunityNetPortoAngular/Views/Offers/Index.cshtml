@@ -1,0 +1,94 @@
+﻿@model IEnumerable<CommunityNetPortoAngular.Models.Offer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var offers = CommunityNetPortoAngular.Helpers.HelperSplit.Split(Model.ToList());
+}
+<div id="offers_home">
+    <h2 class="text-center">Minhas Ofertas</h2>
+
+    <p class="text-center">
+        @Html.ActionLink("Criar Oferta", "Create","Offers", null, null, "offers_create", null, new { @class = "btn btn-primary btn-lg" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalJob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Link)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocalJob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Link)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", null, null, null, "offers_edit", new { id = item.ID }, new { @class = "btn btn-xs btn-default " }) |
+                    @Html.ActionLink("Detalhes", "Details", null, null, null, "offers_detail", new { id = item.ID }, new { @class = "btn btn-xs btn-default " }) |
+                    @Html.ActionLink("Apagar", "Delete", null, null, null, "offers_delete", new { id = item.ID }, new { @class = "btn btn-xs btn-default " })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@foreach (var offerList in offers)
+{
+
+    <div class="row">
+        @foreach (var item in offerList)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img alt="sem imagem" data-src="holder.js/100%x200" src="@item.ImageUrl" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+                    <div class="caption">
+                        <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        <p><a href="@Url.Action("Details","Offers", new { id=item.ID })#offers_detail" class="btn btn-primary" role="button">Saber mais  &raquo;</a> <a href="#" class="btn btn-light" role="button"><i class="fa fa-user fa-fw fa-3x"></i> @User.Identity.Name</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+}

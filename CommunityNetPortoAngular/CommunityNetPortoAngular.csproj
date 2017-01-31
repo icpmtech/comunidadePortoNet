@@ -275,6 +275,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NumberArticlesVieModel.cs" />
     <Compile Include="Controllers\NumberUser.cs" />
+    <Compile Include="Controllers\OffersController.cs" />
     <Compile Include="Controllers\ProficienciesController.cs" />
     <Compile Include="Controllers\ProficiencyViewModel.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -304,6 +305,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\Offer.cs" />
     <Compile Include="Models\Experience.cs" />
     <Compile Include="Models\Interest.cs" />
     <Compile Include="Models\Statement.cs" />
@@ -1876,6 +1878,12 @@
     <Content Include="Views\Home\_Statements.cshtml" />
     <Content Include="Views\Home\NumberOfUsers.cshtml" />
     <Content Include="Views\Home\NumberOfArticles.cshtml" />
+    <Content Include="Views\Offers\Create.cshtml" />
+    <Content Include="Views\Offers\Delete.cshtml" />
+    <Content Include="Views\Offers\Details.cshtml" />
+    <Content Include="Views\Offers\Edit.cshtml" />
+    <Content Include="Views\Offers\Index.cshtml" />
+    <Content Include="Views\Home\_Offers.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml_" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />

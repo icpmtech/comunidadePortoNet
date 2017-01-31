@@ -4,7 +4,7 @@
     ViewBag.Title = "Iniciar uma nova sessão";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
 <section id="login">
     <div class="row">
         <div class="col-md-8">
@@ -12,7 +12,7 @@
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                     @Html.AntiForgeryToken()
-                    <h4>Entrar com tuas credenciais locais.</h4>
+                    <h4 class="text-center" >Entrar com tuas credenciais locais.</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">

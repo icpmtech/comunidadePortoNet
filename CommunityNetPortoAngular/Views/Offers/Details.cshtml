@@ -1,0 +1,82 @@
+﻿@model CommunityNetPortoAngular.Models.Offer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="offers_detail">
+    <h2>Detalhes</h2>
+
+    <div>
+        <h4>Oferta</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NumberReference)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NumberReference)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LocalJob)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LocalJob)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Link)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ImageUrl)
+            </dd>
+        </dl>
+    </div>
+    @if ()
+    {
+
+    }
+    <p>
+      @Html.ActionLink("Editar", "Edit", null, null, null, "offers_edit", new { id = Model.ID }, new { @class = "btn btn-default " }) |
+      @Html.ActionLink("Voltar á minha lista", "Index", "Offers", null, null, "offers_home", null, new { @class = "btn btn-primary btn-lg" })
+    </p>
+</div>

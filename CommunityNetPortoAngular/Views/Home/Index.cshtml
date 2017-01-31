@@ -23,7 +23,19 @@
             </div>
         </div>
                 </section>
-
+<section id="offers" class="services well-material-light-blue">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div class="section-header">
+                    <h2 class="section-title">As nossas ofertas de emprego</h2>
+                    <hr class="small">
+                </div>
+                @Html.Action("_Offers", "Home")
+            </div>
+        </div>
+    </div>
+</section>
 <section id="ranking_users" class="section">
     <div class="container">
         <div class="section-header">
@@ -69,13 +81,17 @@
                         <li><i class="mdi-action-done"></i>O Porto e o .Net crescem connosco</li>
                         <li><i class="mdi-action-done"></i>Vamos crescer juntos</li>
                     </ul>
+@if (!Request.IsAuthenticated)
+{
                     <a href="@Url.Action("Register", "Account")#register" class="btn btn-lg btn-primary">Junta te a nós agora!</a>
+}
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+@if (!Request.IsAuthenticated)
+{
 <section id="cta">
     <div class="container">
         <div class="row text-center">
@@ -84,7 +100,7 @@
         </div>
     </div>
 </section>
-
+}
 @Html.Action("_Statements", "Home")
 <section id="counter" class="section">
     <div class="container">

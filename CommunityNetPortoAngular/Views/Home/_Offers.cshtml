@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CommunityNetPortoAngular.Models.Offer>
+@{
+    Layout = null;
+    var Offers = new List<List<CommunityNetPortoAngular.Models.Offer>>();
+    if (Model != null)
+    {
+        Offers = CommunityNetPortoAngular.Helpers.HelperSplit.Split(Model.ToList());
+    }
+
+}
+
+
+
+<h1>@Html.ActionLink("Criar nova oferta", "Index", "Offers", null, null, "offers_home", null, new { @class = "btn btn-primary btn-lg" })</h1>
+<section id="main-Offers" class="section  main-feature-gray">
+
+    <div class="container">
+
+        @foreach (var articleList in Offers)
+        {
+            <div class="row">
+
+
+
+
+                @foreach (var item in articleList)
+                {
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="features">
+                            <div class="icon">
+                                <img alt="sem imagem" width="79" data-src="holder.js/100%x200" src="@item.ImageUrl" data-holder-rendered="true">
+
+                            </div>
+                            <div class="features-text">
+                                <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Description) </p>
+
+                                <a href="@Url.Action("Details","Offers", new { id=item.ID })#offers_details" class="btn btn-lg btn-primary" role="button">Saber mais  &raquo;</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+        }
+
+        </div>
+
+    </section>

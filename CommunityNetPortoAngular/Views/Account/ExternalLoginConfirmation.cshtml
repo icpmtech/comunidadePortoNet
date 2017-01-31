@@ -2,17 +2,17 @@
 @{
     ViewBag.Title = "Registo de conta";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>Formulário de associação de @ViewBag.LoginProvider.</h3>
+<h2 class="text-center">@ViewBag.Title.</h2>
+<h3 class="text-center">Formulário de associação de @ViewBag.LoginProvider.</h3>
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Formulário de associação de conta</h4>
+    <h4 class="text-center">Formulário de associação de conta</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <p class="text-info">
+    <p class="text-info text-center">
         Você foi autenticado com êxito com <strong>@ViewBag.LoginProvider</strong>.
         Insira um nome de utilizador para entrar e clique no botão Registrar para terminar.
     </p>

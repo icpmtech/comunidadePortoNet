@@ -40,11 +40,9 @@ namespace CommunityNetPortoAngular.Models
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Proficiency> Proficiencies { get; set; }
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Project> Projects { get; set; }
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Language> Languages { get; set; }
-
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Education> Educations { get; set; }
-
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Interest> Interests { get; set; }
         public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Statement> Statements { get; set; }
-
+        public System.Data.Entity.DbSet<CommunityNetPortoAngular.Models.Offer> Offers { get; set; }
     }
 }

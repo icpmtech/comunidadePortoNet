@@ -61,6 +61,15 @@ namespace CommunityNetPortoAngular.Controllers
 
         }
         [AllowAnonymous]
+        public ActionResult _Offers()
+        {
+
+            return View(db.Offers.Include("ResumeUser").Where(q => q.Active == true).ToList());
+
+
+
+        }
+        [AllowAnonymous]
         public ActionResult _Statements()
         {
 
